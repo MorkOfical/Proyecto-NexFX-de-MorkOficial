@@ -1,0 +1,32 @@
+/**
+ * NexFX — entrada única de estilos
+ * core → landing → modales → app → resto de componentes
+ */
+@import url('./core/tokens.css');
+@import url('./core/senior-mode.css');
+@import url('./core/base.css');
+
+/* Vista pública */
+@import url('./landing/topbar.css');
+@import url('./landing/hero.css');
+@import url('./landing/live-card.css');
+@import url('./landing/converter.css');
+@import url('./landing/pairs.css');
+@import url('./landing/value-props.css');
+@import url('./landing/brands.css');
+@import url('./landing/footer.css');
+
+@import url('./components/modals.css');
+
+/* Dashboard */
+@import url('./app/shell.css');
+@import url('./app/hero-rate.css');
+@import url('./app/converter.css');
+@import url('./app/chart.css');
+
+@import url('./components/nora-panel.css');
+@import url('./components/comments.css');
+@import url('./components/profile.css');
+@import url('./components/nora-float.css');
+
+@import url('./components/feedback.css');

@@ -1,0 +1,135 @@
+/* Nora — panel embebido en la app (vista principal) */
+.nh {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: 15px;
+  padding: 12px 15px;
+  margin-bottom: 11px;
+}
+.na {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  box-shadow: 0 0 16px rgba(0, 245, 212, 0.2);
+}
+.nn {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+}
+.ns {
+  font-size: 10px;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 1px;
+}
+.no {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  color: var(--green);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 1px;
+}
+.cw {
+  display: flex;
+  flex-direction: column;
+  height: clamp(360px, 55dvh, 540px);
+}
+.cm {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding-bottom: 6px;
+  padding-right: 4px;
+}
+.cm::-webkit-scrollbar {
+  width: 3px;
+}
+.cm::-webkit-scrollbar-thumb {
+  background: var(--border2);
+  border-radius: 3px;
+}
+.msg {
+  max-width: 82%;
+  padding: 11px 13px;
+  border-radius: 15px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.msg.bot {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 15px 15px 15px 4px;
+  align-self: flex-start;
+}
+.msg.user {
+  background: linear-gradient(135deg, var(--teal), var(--teal2));
+  color: var(--bg);
+  border-radius: 15px 15px 4px 15px;
+  align-self: flex-end;
+  font-weight: 500;
+}
+.ms {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+.cb2 {
+  display: flex;
+  gap: 7px;
+  padding-top: 9px;
+  border-top: 1px solid var(--border);
+  margin-top: 7px;
+}
+.ci {
+  flex: 1;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 11px 13px;
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  font-family: 'Outfit', sans-serif;
+  transition: border-color 0.2s;
+}
+.ci:focus {
+  border-color: var(--teal);
+}
+.sb {
+  background: linear-gradient(135deg, var(--teal), var(--teal2));
+  border: none;
+  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.sb:active {
+  transform: scale(0.9);
+}
+.sb:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}

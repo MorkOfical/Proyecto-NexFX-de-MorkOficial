@@ -1,0 +1,42 @@
+/* Design tokens — tema oscuro / claro */
+:root {
+  --bg: #03050f;
+  --bg2: #060a18;
+  --card: #0a1020;
+  --card2: #0f1830;
+  --border: #162040;
+  --border2: #1e2d55;
+  --teal: #00f5d4;
+  --teal2: #00c4aa;
+  --blue: #3b82f6;
+  --violet: #8b5cf6;
+  --green: #22d3a0;
+  --red: #f43f5e;
+  --text: #e2eaf8;
+  --text2: #8faac8;
+  --muted: #3d5278;
+  --muted2: #243350;
+  --shadow: rgba(0, 0, 0, 0.5);
+  --tb: rgba(3, 5, 15, 0.93);
+  --fs: 1; /* font scale factor */
+}
+body.light {
+  --bg: #f0f4ff;
+  --bg2: #e4eaf8;
+  --card: #fff;
+  --card2: #f7f9ff;
+  --border: #d0daf0;
+  --border2: #b8cae8;
+  --teal: #0097a7;
+  --teal2: #00838f;
+  --blue: #1d6ae5;
+  --violet: #7c3aed;
+  --green: #059669;
+  --red: #dc2626;
+  --text: #0f172a;
+  --text2: #475569;
+  --muted: #64748b;
+  --muted2: #94a3b8;
+  --shadow: rgba(0, 0, 0, 0.12);
+  --tb: rgba(240, 244, 255, 0.93);
+}

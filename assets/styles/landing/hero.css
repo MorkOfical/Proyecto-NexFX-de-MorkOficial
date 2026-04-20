@@ -1,0 +1,80 @@
+/* Landing — hero */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(32px, 6vh, 70px) clamp(14px, 4vw, 40px) clamp(16px, 3vh, 32px);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(8px, 1.1vw, 10px);
+  letter-spacing: 4px;
+  color: var(--teal);
+  margin-bottom: 12px;
+  background: rgba(0, 245, 212, 0.08);
+  border: 1px solid rgba(0, 245, 212, 0.2);
+  border-radius: 20px;
+  padding: 5px 14px;
+  display: inline-block;
+}
+.htitle {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(30px, 6vw, 72px);
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1.05;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, var(--text) 0%, var(--teal) 60%, var(--blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hsub {
+  font-size: clamp(13px, 1.7vw, 16px);
+  color: var(--text2);
+  max-width: 500px;
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+.hbtns {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.hp {
+  background: linear-gradient(135deg, var(--teal), var(--teal2));
+  color: var(--bg);
+  border: none;
+  border-radius: 14px;
+  padding: 12px 24px;
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 8px 22px rgba(0, 245, 212, 0.25);
+}
+.hp:hover {
+  transform: translateY(-2px);
+}
+.hg {
+  background: none;
+  border: 1px solid var(--border2);
+  color: var(--text);
+  border-radius: 14px;
+  padding: 12px 24px;
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.hg:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+}
