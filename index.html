@@ -1,375 +1,757 @@
-<!DOCTYPE html>
+<!doctype html>
 <!-- NexFX © 2025 Mork_Oficial. All rights reserved. -->
 <html lang="es">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5"/>
-<meta name="theme-color" content="#03050f"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-title" content="NexFX"/>
-<title>NexFX — by Mork_Oficial</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<link rel="stylesheet" href="index-1.css"/>
-</head>
-<body>
-<div class="grid"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5" />
+    <meta name="theme-color" content="#03050f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="NexFX" />
 
-<!-- LANDING -->
-<div id="land">
-  <nav class="topbar">
-    <div class="tb-left">
-      <button class="lbtn" onclick="openLang()">🌐 Change Language</button>
-      <button class="ibtn" onclick="toggleTheme()" id="tB">🌙</button>
-    </div>
-    <div class="tb-logo">NexFX</div>
-    <div class="tb-right">
-      <button class="obtn" onclick="openAuth('login')">Iniciar Sesión</button>
-      <button class="tbtn" onclick="openAuth('reg')">Registrarse</button>
-    </div>
-  </nav>
-  <section class="hero">
-    <div class="eyebrow">DIVISAS EN TIEMPO REAL · BY MORK_OFICIAL</div>
-    <h1 class="htitle">NexFX</h1>
-    <p class="hsub">Convierte cualquier moneda del mundo al instante, con inteligencia artificial integrada y tasas actualizadas en vivo.</p>
-    <div class="hbtns">
-      <button class="hp" onclick="openAuth('reg')">Comenzar gratis</button>
-      <button class="hg" onclick="document.getElementById('cwid').scrollIntoView({behavior:'smooth'})">Probar ahora</button>
-    </div>
-    <div class="lcard">
-      <div class="lc-hdr">
-        <div class="lc-pair">USD / MXN</div>
-        <div class="pill"><span class="dot"></span>EN VIVO</div>
-      </div>
-      <div class="lc-rate" id="lwR">—</div>
-      <div class="lc-sub">
-        <span class="chip neu" id="lwC">cargando...</span>
-        <span class="lc-time" id="lwT"></span>
-      </div>
-    </div>
-    <div class="cwidget" id="cwid">
-      <div class="cw-lbl">CONVERTIDOR — PRUEBA SIN REGISTRARTE</div>
-      <div class="cw-grid">
-        <div class="cw-col">
-          <div class="cw-cl">DE</div>
-          <select class="csel" id="gF" onchange="gwC()"></select>
-          <input class="cinput" type="number" id="gA" placeholder="0.00" inputmode="decimal" oninput="gwCF()"/>
-          <div class="cprice" id="gFP"></div>
+    <title>NexFX — by Mork_Oficial</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="index-1.css" />
+  </head>
+
+  <body>
+    <div class="grid"></div>
+
+    <!-- LANDING -->
+    <div id="land">
+      <nav class="topbar">
+        <div class="tb-left">
+          <button class="lbtn" onclick="openLang()">🌐 Change Language</button>
+          <button class="ibtn" onclick="toggleTheme()" id="tB">🌙</button>
         </div>
-        <div class="cw-mid">
-          <button class="arrbtn" onclick="gwSw()">↑</button>
-          <div class="arr-lbl">swap</div>
-          <button class="arrbtn" onclick="gwSw()">↓</button>
+        <div class="tb-logo">NexFX</div>
+        <div class="tb-right">
+          <button class="obtn" onclick="openAuth('login')">Iniciar Sesión</button>
+          <button class="tbtn" onclick="openAuth('reg')">Registrarse</button>
         </div>
-        <div class="cw-col">
-          <div class="cw-cl">A</div>
-          <select class="csel" id="gT" onchange="gwC()"></select>
-          <input class="cinput" type="number" id="gR" placeholder="0.00" inputmode="decimal" oninput="gwCT()"/>
-          <div class="cprice" id="gTP"></div>
+      </nav>
+      <section class="hero">
+        <div class="eyebrow">DIVISAS EN TIEMPO REAL · BY MORK_OFICIAL</div>
+        <h1 class="htitle">NexFX</h1>
+        <p class="hsub">
+          Convierte cualquier moneda del mundo al instante, con inteligencia artificial integrada y
+          tasas actualizadas en vivo.
+        </p>
+        <div class="hbtns">
+          <button class="hp" onclick="openAuth('reg')">Comenzar gratis</button>
+          <button
+            class="hg"
+            onclick="document.getElementById('cwid').scrollIntoView({ behavior: 'smooth' })"
+          >
+            Probar ahora
+          </button>
+        </div>
+        <div class="lcard">
+          <div class="lc-hdr">
+            <div class="lc-pair">USD / MXN</div>
+            <div class="pill"><span class="dot"></span>EN VIVO</div>
+          </div>
+          <div class="lc-rate" id="lwR">—</div>
+          <div class="lc-sub">
+            <span class="chip neu" id="lwC">cargando...</span>
+            <span class="lc-time" id="lwT"></span>
+          </div>
+        </div>
+        <div class="cwidget" id="cwid">
+          <div class="cw-lbl">CONVERTIDOR — PRUEBA SIN REGISTRARTE</div>
+          <div class="cw-grid">
+            <div class="cw-col">
+              <div class="cw-cl">DE</div>
+              <select class="csel" id="gF" onchange="gwC()"></select>
+              <input
+                class="cinput"
+                type="number"
+                id="gA"
+                placeholder="0.00"
+                inputmode="decimal"
+                oninput="gwCF()"
+              />
+              <div class="cprice" id="gFP"></div>
+            </div>
+            <div class="cw-mid">
+              <button class="arrbtn" onclick="gwSw()">↑</button>
+              <div class="arr-lbl">swap</div>
+              <button class="arrbtn" onclick="gwSw()">↓</button>
+            </div>
+            <div class="cw-col">
+              <div class="cw-cl">A</div>
+              <select class="csel" id="gT" onchange="gwC()"></select>
+              <input
+                class="cinput"
+                type="number"
+                id="gR"
+                placeholder="0.00"
+                inputmode="decimal"
+                oninput="gwCT()"
+              />
+              <div class="cprice" id="gTP"></div>
+            </div>
+          </div>
+          <div class="cresult">
+            <div>
+              <div class="cres-num" id="gRN">Escribe una cantidad</div>
+              <div class="cres-rate" id="gRR">TASA EN TIEMPO REAL</div>
+            </div>
+            <div class="pill"><span class="dot"></span>LIVE</div>
+          </div>
+          <div class="bstrip">
+            <span>¿Tu empresa quiere aparecer aquí?</span>
+            <button class="bs-btn" onclick="openM('cM')">Contáctanos</button>
+          </div>
+        </div>
+      </section>
+      <div class="pw">
+        <div class="pg">
+          <div class="pc">
+            <div class="pn">EUR/MXN</div>
+            <div class="pr" id="pEM">—</div>
+          </div>
+          <div class="pc">
+            <div class="pn">GBP/MXN</div>
+            <div class="pr" id="pGM">—</div>
+          </div>
+          <div class="pc">
+            <div class="pn">CAD/MXN</div>
+            <div class="pr" id="pCM">—</div>
+          </div>
+          <div class="pc">
+            <div class="pn">BRL/MXN</div>
+            <div class="pr" id="pBM">—</div>
+          </div>
+          <div class="pc">
+            <div class="pn">JPY/MXN</div>
+            <div class="pr" id="pJM">—</div>
+          </div>
+          <div class="pc">
+            <div class="pn">ARS/MXN</div>
+            <div class="pr" id="pAM">—</div>
+          </div>
         </div>
       </div>
-      <div class="cresult">
+      <div class="fw">
+        <div class="fg">
+          <div class="fc">
+            <div class="fi">📡</div>
+            <div class="ft">Tasas en vivo</div>
+            <div class="fd">Actualización cada 60 segundos con datos del mercado global.</div>
+          </div>
+          <div class="fc">
+            <div class="fi">💱</div>
+            <div class="ft">26 divisas mundiales</div>
+            <div class="fd">USD, EUR, GBP, JPY, BRL, ARS, COP, CNY y muchas más.</div>
+          </div>
+          <div class="fc">
+            <div class="fi">✦</div>
+            <div class="ft">NORA — IA Financiera</div>
+            <div class="fd">Asistente inteligente que responde en cualquier idioma.</div>
+          </div>
+          <div class="fc">
+            <div class="fi">🌙</div>
+            <div class="ft">Modo oscuro / claro</div>
+            <div class="fd">Optimizado para ahorro de batería. Tú eliges cómo verlo.</div>
+          </div>
+        </div>
+        <div class="prv" style="max-width: 1080px; margin: 14px auto 0">
+          <div class="prv-i">🔒</div>
+          <div class="prv-t">
+            <strong>Tus datos están seguros.</strong> En NexFX nunca vendemos ni compartimos tu
+            información personal con terceros. Tus datos se usan únicamente para mejorar tu
+            experiencia.
+          </div>
+        </div>
+      </div>
+      <div class="bw">
+        <div class="bc">
+          <div class="be">PARA MARCAS Y EMPRESAS</div>
+          <div class="bt">¿Quieres llegar a nuestra audiencia?</div>
+          <div class="bd">
+            NexFX conecta con usuarios que toman decisiones financieras todos los días. Banners,
+            menciones en NORA IA, afiliados y co-branding disponibles.
+          </div>
+          <button class="cbtn" onclick="openM('cM')">🤝 ¿Eres una marca? Contáctanos</button><br />
+          <button class="devbtn" onclick="openM('dM')">
+            ⌨️ ¿Eres Dev o programador/a? Escríbeme aquí
+          </button>
+        </div>
+      </div>
+      <footer class="sftr">
+        <div class="fcp">© 2025 MORK_OFICIAL · NEXFX · TODOS LOS DERECHOS RESERVADOS</div>
+        <button class="devbtn" style="margin: 0" onclick="openM('dM')">
+          ⌨️ ¿Eres Dev? Escríbeme
+        </button>
+      </footer>
+    </div>
+
+    <!-- APP -->
+    <div id="app">
+      <div class="atb">
+        <nav class="anv">
+          <button class="ani on" onclick="showP('Monitor', this)">Monitor</button>
+          <button class="ani" onclick="showP('Conv', this)">Convertidor</button>
+          <button class="ani" onclick="showP('Chart', this)">Gráfica</button>
+          <button class="ani" onclick="showP('Nora', this)">NORA IA</button>
+          <button class="ani" onclick="showP('Comments', this)">Comunidad</button>
+          <button class="ani" onclick="showP('Brands', this)">Marcas</button>
+        </nav>
+        <div class="alo">NexFX</div>
+        <div class="ari">
+          <span class="aun" id="aUN"></span>
+          <button class="lbtn" onclick="openLang()">🌐</button>
+          <button class="ibtn" onclick="toggleTheme()" id="tB2">🌙</button>
+          <button class="obtn" onclick="showP('Profile', null)">Perfil</button>
+          <button
+            class="obtn"
+            style="color: var(--red); border-color: rgba(244, 63, 94, 0.4)"
+            onclick="doLogout()"
+          >
+            Salir
+          </button>
+        </div>
+      </div>
+      <div class="ac">
+        <!-- MONITOR -->
+        <div class="ap on" id="pgMonitor">
+          <div id="seniorBanner" style="display: none" class="senior-banner">
+            <div class="senior-banner-ico">👴</div>
+            <div class="senior-banner-txt">
+              Detectamos que prefieres letras más grandes. ¿Activamos el
+              <strong>Modo Fácil</strong>?
+            </div>
+            <button class="senior-banner-btn" onclick="activateSenior()">Activar</button>
+          </div>
+          <div class="ah">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 9px;
+              "
+            >
+              <div class="pill"><span class="dot"></span>EN VIVO</div>
+              <div
+                style="
+                  font-family: 'JetBrains Mono', monospace;
+                  font-size: 10px;
+                  color: var(--muted);
+                "
+              >
+                USD / MXN
+              </div>
+            </div>
+            <div class="br" id="aR">—</div>
+            <div style="display: flex; align-items: center; gap: 9px; flex-wrap: wrap">
+              <span class="chip neu" id="aC">cargando...</span>
+              <span
+                style="
+                  font-size: 10px;
+                  color: var(--muted);
+                  font-family: 'JetBrains Mono', monospace;
+                "
+                id="aT"
+              ></span>
+            </div>
+          </div>
+          <div class="sg">
+            <div class="sc">
+              <div class="sl">📈 MÁX HOY</div>
+              <div class="sv" id="aH">—</div>
+            </div>
+            <div class="sc">
+              <div class="sl">📉 MÍN HOY</div>
+              <div class="sv" id="aL">—</div>
+            </div>
+          </div>
+          <div class="sl2">PARES DESTACADOS</div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+              gap: 8px;
+            "
+          >
+            <div class="pc">
+              <div class="pn">EUR/MXN</div>
+              <div class="pr" id="aPEM">—</div>
+            </div>
+            <div class="pc">
+              <div class="pn">GBP/MXN</div>
+              <div class="pr" id="aPGM">—</div>
+            </div>
+            <div class="pc">
+              <div class="pn">CAD/MXN</div>
+              <div class="pr" id="aPCM">—</div>
+            </div>
+            <div class="pc">
+              <div class="pn">BRL/MXN</div>
+              <div class="pr" id="aPBM">—</div>
+            </div>
+            <div class="pc">
+              <div class="pn">JPY/MXN</div>
+              <div class="pr" id="aPJM">—</div>
+            </div>
+            <div class="pc">
+              <div class="pn">ARS/MXN</div>
+              <div class="pr" id="aPAM">—</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONVERTER -->
+        <div class="ap" id="pgConv">
+          <div class="sl2">CONVERTIDOR UNIVERSAL · 26 DIVISAS</div>
+          <div class="cr">
+            <div class="cb">
+              <div class="cfr">
+                <span class="cf" id="aFF">🇺🇸</span
+                ><select class="csel" id="aFr" onchange="aCF()"></select>
+              </div>
+              <input
+                class="af"
+                type="number"
+                id="aFA"
+                placeholder="0.00"
+                inputmode="decimal"
+                oninput="aCF()"
+              />
+            </div>
+            <div class="sm"><button class="sbt" onclick="aSw()">⇅</button></div>
+            <div class="cb">
+              <div class="cfr">
+                <span class="cf" id="aTF">🇲🇽</span
+                ><select class="csel" id="aTo" onchange="aCF()"></select>
+              </div>
+              <input
+                class="af"
+                type="number"
+                id="aTA"
+                placeholder="0.00"
+                inputmode="decimal"
+                oninput="aCT()"
+              />
+            </div>
+          </div>
+          <div class="rc">
+            <div class="rn" id="aRN">Escribe una cantidad</div>
+            <div class="rr" id="aRR">TASA EN TIEMPO REAL</div>
+          </div>
+        </div>
+
+        <!-- CHART PAGE -->
+        <div class="ap" id="pgChart">
+          <div class="chart-card">
+            <div class="chart-hdr">
+              <div class="chart-title">📊 Histórico de precio</div>
+              <select class="chart-sel" id="chartCur" onchange="updateChart()">
+                <option value="MXN">USD/MXN</option>
+                <option value="EUR">USD/EUR</option>
+                <option value="GBP">USD/GBP</option>
+                <option value="BRL">USD/BRL</option>
+                <option value="ARS">USD/ARS</option>
+                <option value="CAD">USD/CAD</option>
+                <option value="JPY">USD/JPY</option>
+              </select>
+            </div>
+            <div class="chart-tabs" style="margin-bottom: 14px">
+              <button class="ctab on" onclick="setChartRange(7, this)">7D</button>
+              <button class="ctab" onclick="setChartRange(30, this)">1M</button>
+              <button class="ctab" onclick="setChartRange(90, this)">3M</button>
+              <button class="ctab" onclick="setChartRange(365, this)">1A</button>
+            </div>
+            <div class="chart-wrap"><canvas id="rateChart"></canvas></div>
+            <div
+              style="
+                margin-top: 12px;
+                font-size: 11px;
+                color: var(--muted);
+                font-family: 'JetBrains Mono', monospace;
+                text-align: center;
+              "
+              id="chartNote"
+            >
+              Datos históricos aproximados generados para visualización
+            </div>
+          </div>
+          <div class="sl2" style="margin-top: 4px">RESUMEN DEL PERÍODO</div>
+          <div class="sg">
+            <div class="sc">
+              <div class="sl">📈 MÁXIMO</div>
+              <div class="sv" id="chHigh">—</div>
+            </div>
+            <div class="sc">
+              <div class="sl">📉 MÍNIMO</div>
+              <div class="sv" id="chLow">—</div>
+            </div>
+            <div class="sc">
+              <div class="sl">📊 PROMEDIO</div>
+              <div class="sv" id="chAvg">—</div>
+            </div>
+            <div class="sc">
+              <div class="sl">📅 CAMBIO</div>
+              <div class="sv" id="chChg">—</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NORA -->
+        <div class="ap" id="pgNora">
+          <div class="nh">
+            <div class="na">✦</div>
+            <div>
+              <div class="nn">NORA</div>
+              <div class="ns">Asistente financiero · NexFX</div>
+            </div>
+            <div class="no"><span class="dot"></span>ACTIVA</div>
+          </div>
+          <div class="cw">
+            <div class="cm" id="aMs">
+              <div class="msg bot">
+                <div class="ms">✦ NORA</div>
+                ¡Hola! Soy NORA, tu asistente financiero en NexFX. Puedo ayudarte con divisas,
+                criptomonedas, economía y más. ¿En qué te ayudo?
+              </div>
+            </div>
+            <div class="cb2">
+              <input
+                class="ci"
+                id="aI"
+                placeholder="Pregúntale algo a NORA..."
+                onkeydown="if (event.key === 'Enter') sA();"
+              /><button class="sb" id="aSB" onclick="sA()">➤</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMMENTS -->
+        <div class="ap" id="pgComments">
+          <div class="sl2">COMUNIDAD · COMENTARIOS Y SUGERENCIAS</div>
+          <div class="comment-form">
+            <div class="comment-form-title">💬 Déjanos tu comentario</div>
+            <div class="comment-form-sub">
+              ¿Tienes una duda, sugerencia o algo que quieras decirnos? ¡Escríbenos! Tu opinión nos
+              ayuda a mejorar NexFX.
+            </div>
+            <textarea
+              class="comment-textarea"
+              id="commentText"
+              placeholder="Escribe aquí tu comentario, duda o sugerencia..."
+            ></textarea>
+            <div class="comment-type-row">
+              <button class="ctype-btn on" onclick="selType(this, 'sugerencia')">
+                💡 Sugerencia
+              </button>
+              <button class="ctype-btn" onclick="selType(this, 'pregunta')">❓ Pregunta</button>
+              <button class="ctype-btn" onclick="selType(this, 'queja')">⚠️ Queja</button>
+            </div>
+            <button class="comment-send" onclick="postComment()">Enviar comentario ✦</button>
+          </div>
+          <div class="sl2">COMENTARIOS DE LA COMUNIDAD</div>
+          <div class="comment-list" id="commentList">
+            <div class="no-comments">Sé el primero en comentar 🌟</div>
+          </div>
+        </div>
+
+        <!-- BRANDS -->
+        <div class="ap" id="pgBrands">
+          <div class="bc" style="margin-bottom: 13px">
+            <div class="be">PARA MARCAS Y EMPRESAS</div>
+            <div class="bt">¿Quieres llegar a nuestra audiencia?</div>
+            <div class="bd">
+              NexFX conecta con usuarios que toman decisiones financieras todos los días.
+            </div>
+            <button class="cbtn" onclick="openM('cM')">🤝 ¿Eres una marca? Contáctanos</button
+            ><br />
+            <button class="devbtn" onclick="openM('dM')" style="margin-top: 11px">
+              ⌨️ ¿Eres Dev? Escríbeme
+            </button>
+          </div>
+          <div class="prv">
+            <div class="prv-i">🔒</div>
+            <div class="prv-t">
+              <strong>Tus datos están seguros.</strong> En NexFX nunca vendemos ni compartimos tu
+              información personal con terceros.
+            </div>
+          </div>
+        </div>
+
+        <!-- PROFILE -->
+        <div class="ap" id="pgProfile">
+          <div class="ph">
+            <div class="pav" id="pAv">?</div>
+            <div class="pnm" id="pNm">—</div>
+            <div class="pem" id="pEm">—</div>
+            <div class="pb">NEXFX MEMBER</div>
+          </div>
+          <div class="mi" onclick="shareApp()">
+            <div class="mii">📤</div>
+            <div class="mit">
+              <div class="mttl">Compartir NexFX</div>
+              <div class="mds">Comparte con tus amigos</div>
+            </div>
+            <div class="mar">›</div>
+          </div>
+          <div class="mi" onclick="showP('Comments', null)">
+            <div class="mii">💬</div>
+            <div class="mit">
+              <div class="mttl">Comunidad</div>
+              <div class="mds">Ver comentarios y sugerencias</div>
+            </div>
+            <div class="mar">›</div>
+          </div>
+          <div class="mi" onclick="openM('cM')">
+            <div class="mii">🤝</div>
+            <div class="mit">
+              <div class="mttl">Colaboraciones</div>
+              <div class="mds">¿Eres una marca? Escríbenos</div>
+            </div>
+            <div class="mar">›</div>
+          </div>
+          <div class="mi" onclick="openM('dM')">
+            <div class="mii">⌨️</div>
+            <div class="mit">
+              <div class="mttl">¿Eres Dev? Escríbeme</div>
+              <div class="mds">LinkedIn · GitHub</div>
+            </div>
+            <div class="mar">›</div>
+          </div>
+          <div class="mi" onclick="toggleTheme()">
+            <div class="mii" id="tMI">🌙</div>
+            <div class="mit">
+              <div class="mttl">Modo oscuro / claro</div>
+              <div class="mds">Optimizado para batería</div>
+            </div>
+            <div class="mar">›</div>
+          </div>
+          <div class="mi" onclick="toggleSeniorMode()">
+            <div class="mii">👴</div>
+            <div class="mit">
+              <div class="mttl" id="seniorModeLabel">Modo Fácil (letra grande)</div>
+              <div class="mds">Para mayor comodidad visual</div>
+            </div>
+            <div class="mar">›</div>
+          </div>
+          <div class="mi" onclick="doLogout()">
+            <div class="mii">🚪</div>
+            <div class="mit"><div class="mttl">Cerrar sesión</div></div>
+            <div class="mar">›</div>
+          </div>
+          <div class="cftr">
+            © 2025 MORK_OFICIAL · NEXFX<br />TODOS LOS DERECHOS RESERVADOS · v3.0
+          </div>
+        </div>
+      </div>
+      <div class="abn">
+        <button class="bni on" onclick="showP('Monitor', this)">
+          <span class="bnc">📡</span>Monitor
+        </button>
+        <button class="bni" onclick="showP('Conv', this)"><span class="bnc">💱</span>Cambio</button>
+        <button class="bni" onclick="showP('Chart', this)">
+          <span class="bnc">📊</span>Gráfica
+        </button>
+        <button class="bni" onclick="showP('Nora', this)"><span class="bnc">✦</span>NORA</button>
+        <button class="bni" onclick="showP('Comments', this)">
+          <span class="bnc">💬</span>Comunidad
+        </button>
+        <button class="bni" onclick="showP('Profile', this)">
+          <span class="bnc">👤</span>Perfil
+        </button>
+      </div>
+    </div>
+
+    <!-- FLOAT NORA -->
+    <div class="nb">
+      <div class="nhi" id="nHi">Si necesitas ayuda, ¡presióname!</div>
+      <button class="nbb" onclick="togF()">✦</button>
+    </div>
+    <div class="fp" id="fP">
+      <div class="fh">
+        <div class="fav">✦</div>
         <div>
-          <div class="cres-num" id="gRN">Escribe una cantidad</div>
-          <div class="cres-rate" id="gRR">TASA EN TIEMPO REAL</div>
+          <div class="fnm">NORA</div>
+          <div class="fsu">Asistente · NexFX</div>
         </div>
-        <div class="pill"><span class="dot"></span>LIVE</div>
+        <button class="fcl" onclick="togF()">✕</button>
       </div>
-      <div class="bstrip">
-        <span>¿Tu empresa quiere aparecer aquí?</span>
-        <button class="bs-btn" onclick="openM('cM')">Contáctanos</button>
-      </div>
-    </div>
-  </section>
-  <div class="pw"><div class="pg">
-    <div class="pc"><div class="pn">EUR/MXN</div><div class="pr" id="pEM">—</div></div>
-    <div class="pc"><div class="pn">GBP/MXN</div><div class="pr" id="pGM">—</div></div>
-    <div class="pc"><div class="pn">CAD/MXN</div><div class="pr" id="pCM">—</div></div>
-    <div class="pc"><div class="pn">BRL/MXN</div><div class="pr" id="pBM">—</div></div>
-    <div class="pc"><div class="pn">JPY/MXN</div><div class="pr" id="pJM">—</div></div>
-    <div class="pc"><div class="pn">ARS/MXN</div><div class="pr" id="pAM">—</div></div>
-  </div></div>
-  <div class="fw"><div class="fg">
-    <div class="fc"><div class="fi">📡</div><div class="ft">Tasas en vivo</div><div class="fd">Actualización cada 60 segundos con datos del mercado global.</div></div>
-    <div class="fc"><div class="fi">💱</div><div class="ft">26 divisas mundiales</div><div class="fd">USD, EUR, GBP, JPY, BRL, ARS, COP, CNY y muchas más.</div></div>
-    <div class="fc"><div class="fi">✦</div><div class="ft">NORA — IA Financiera</div><div class="fd">Asistente inteligente que responde en cualquier idioma.</div></div>
-    <div class="fc"><div class="fi">🌙</div><div class="ft">Modo oscuro / claro</div><div class="fd">Optimizado para ahorro de batería. Tú eliges cómo verlo.</div></div>
-  </div>
-  <div class="prv" style="max-width:1080px;margin:14px auto 0"><div class="prv-i">🔒</div><div class="prv-t"><strong>Tus datos están seguros.</strong> En NexFX nunca vendemos ni compartimos tu información personal con terceros. Tus datos se usan únicamente para mejorar tu experiencia.</div></div>
-  </div>
-  <div class="bw"><div class="bc">
-    <div class="be">PARA MARCAS Y EMPRESAS</div>
-    <div class="bt">¿Quieres llegar a nuestra audiencia?</div>
-    <div class="bd">NexFX conecta con usuarios que toman decisiones financieras todos los días. Banners, menciones en NORA IA, afiliados y co-branding disponibles.</div>
-    <button class="cbtn" onclick="openM('cM')">🤝 ¿Eres una marca? Contáctanos</button><br/>
-    <button class="devbtn" onclick="openM('dM')">⌨️ ¿Eres Dev o programador/a? Escríbeme aquí</button>
-  </div></div>
-  <footer class="sftr">
-    <div class="fcp">© 2025 MORK_OFICIAL · NEXFX · TODOS LOS DERECHOS RESERVADOS</div>
-    <button class="devbtn" style="margin:0" onclick="openM('dM')">⌨️ ¿Eres Dev? Escríbeme</button>
-  </footer>
-</div>
-
-<!-- APP -->
-<div id="app">
-  <div class="atb">
-    <nav class="anv">
-      <button class="ani on" onclick="showP('Monitor',this)">Monitor</button>
-      <button class="ani" onclick="showP('Conv',this)">Convertidor</button>
-      <button class="ani" onclick="showP('Chart',this)">Gráfica</button>
-      <button class="ani" onclick="showP('Nora',this)">NORA IA</button>
-      <button class="ani" onclick="showP('Comments',this)">Comunidad</button>
-      <button class="ani" onclick="showP('Brands',this)">Marcas</button>
-    </nav>
-    <div class="alo">NexFX</div>
-    <div class="ari">
-      <span class="aun" id="aUN"></span>
-      <button class="lbtn" onclick="openLang()">🌐</button>
-      <button class="ibtn" onclick="toggleTheme()" id="tB2">🌙</button>
-      <button class="obtn" onclick="showP('Profile',null)">Perfil</button>
-      <button class="obtn" style="color:var(--red);border-color:rgba(244,63,94,.4)" onclick="doLogout()">Salir</button>
-    </div>
-  </div>
-  <div class="ac">
-
-    <!-- MONITOR -->
-    <div class="ap on" id="pgMonitor">
-      <div id="seniorBanner" style="display:none" class="senior-banner">
-        <div class="senior-banner-ico">👴</div>
-        <div class="senior-banner-txt">Detectamos que prefieres letras más grandes. ¿Activamos el <strong>Modo Fácil</strong>?</div>
-        <button class="senior-banner-btn" onclick="activateSenior()">Activar</button>
-      </div>
-      <div class="ah">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px">
-          <div class="pill"><span class="dot"></span>EN VIVO</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted)">USD / MXN</div>
-        </div>
-        <div class="br" id="aR">—</div>
-        <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">
-          <span class="chip neu" id="aC">cargando...</span>
-          <span style="font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace" id="aT"></span>
+      <div class="fm" id="fMs">
+        <div class="msg bot" style="font-size: 12px">
+          <div class="ms" style="font-size: 8px">✦ NORA</div>
+          ¡Hola! Soy NORA. ¿En qué te ayudo?
         </div>
       </div>
-      <div class="sg">
-        <div class="sc"><div class="sl">📈 MÁX HOY</div><div class="sv" id="aH">—</div></div>
-        <div class="sc"><div class="sl">📉 MÍN HOY</div><div class="sv" id="aL">—</div></div>
-      </div>
-      <div class="sl2">PARES DESTACADOS</div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:8px">
-        <div class="pc"><div class="pn">EUR/MXN</div><div class="pr" id="aPEM">—</div></div>
-        <div class="pc"><div class="pn">GBP/MXN</div><div class="pr" id="aPGM">—</div></div>
-        <div class="pc"><div class="pn">CAD/MXN</div><div class="pr" id="aPCM">—</div></div>
-        <div class="pc"><div class="pn">BRL/MXN</div><div class="pr" id="aPBM">—</div></div>
-        <div class="pc"><div class="pn">JPY/MXN</div><div class="pr" id="aPJM">—</div></div>
-        <div class="pc"><div class="pn">ARS/MXN</div><div class="pr" id="aPAM">—</div></div>
+      <div class="fb">
+        <input
+          class="fi2"
+          id="fI"
+          placeholder="Pregúntale algo a NORA..."
+          onkeydown="if (event.key === 'Enter') sF();"
+        /><button class="fs" id="fSB" onclick="sF()">➤</button>
       </div>
     </div>
 
-    <!-- CONVERTER -->
-    <div class="ap" id="pgConv">
-      <div class="sl2">CONVERTIDOR UNIVERSAL · 26 DIVISAS</div>
-      <div class="cr">
-        <div class="cb"><div class="cfr"><span class="cf" id="aFF">🇺🇸</span><select class="csel" id="aFr" onchange="aCF()"></select></div><input class="af" type="number" id="aFA" placeholder="0.00" inputmode="decimal" oninput="aCF()"/></div>
-        <div class="sm"><button class="sbt" onclick="aSw()">⇅</button></div>
-        <div class="cb"><div class="cfr"><span class="cf" id="aTF">🇲🇽</span><select class="csel" id="aTo" onchange="aCF()"></select></div><input class="af" type="number" id="aTA" placeholder="0.00" inputmode="decimal" oninput="aCT()"/></div>
-      </div>
-      <div class="rc"><div class="rn" id="aRN">Escribe una cantidad</div><div class="rr" id="aRR">TASA EN TIEMPO REAL</div></div>
-    </div>
-
-    <!-- CHART PAGE -->
-    <div class="ap" id="pgChart">
-      <div class="chart-card">
-        <div class="chart-hdr">
-          <div class="chart-title">📊 Histórico de precio</div>
-          <select class="chart-sel" id="chartCur" onchange="updateChart()">
-            <option value="MXN">USD/MXN</option>
-            <option value="EUR">USD/EUR</option>
-            <option value="GBP">USD/GBP</option>
-            <option value="BRL">USD/BRL</option>
-            <option value="ARS">USD/ARS</option>
-            <option value="CAD">USD/CAD</option>
-            <option value="JPY">USD/JPY</option>
-          </select>
+    <!-- AUTH MODAL -->
+    <div class="ovl" id="authM" onclick="cOvl(event, 'authM')">
+      <div class="am">
+        <button class="mcl" onclick="closeM('authM')">✕</button>
+        <div class="aw">NexFX</div>
+        <div class="aby">BY MORK_OFICIAL</div>
+        <div class="atabs">
+          <button class="atab on" id="tL" onclick="swTab('login')">ENTRAR</button>
+          <button class="atab" id="tR" onclick="swTab('reg')">REGISTRO</button>
         </div>
-        <div class="chart-tabs" style="margin-bottom:14px">
-          <button class="ctab on" onclick="setChartRange(7,this)">7D</button>
-          <button class="ctab" onclick="setChartRange(30,this)">1M</button>
-          <button class="ctab" onclick="setChartRange(90,this)">3M</button>
-          <button class="ctab" onclick="setChartRange(365,this)">1A</button>
+        <div id="lF">
+          <div class="field">
+            <label>CORREO</label
+            ><input type="email" id="lE" placeholder="tu@correo.com" autocomplete="email" />
+          </div>
+          <div class="field">
+            <label>CONTRASEÑA</label
+            ><input
+              type="password"
+              id="lP"
+              placeholder="••••••••"
+              onkeydown="if (event.key === 'Enter') doLogin();"
+            />
+          </div>
+          <button class="pbtn" onclick="doLogin()">INICIAR SESIÓN</button>
         </div>
-        <div class="chart-wrap"><canvas id="rateChart"></canvas></div>
-        <div style="margin-top:12px;font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;text-align:center" id="chartNote">Datos históricos aproximados generados para visualización</div>
-      </div>
-      <div class="sl2" style="margin-top:4px">RESUMEN DEL PERÍODO</div>
-      <div class="sg">
-        <div class="sc"><div class="sl">📈 MÁXIMO</div><div class="sv" id="chHigh">—</div></div>
-        <div class="sc"><div class="sl">📉 MÍNIMO</div><div class="sv" id="chLow">—</div></div>
-        <div class="sc"><div class="sl">📊 PROMEDIO</div><div class="sv" id="chAvg">—</div></div>
-        <div class="sc"><div class="sl">📅 CAMBIO</div><div class="sv" id="chChg">—</div></div>
-      </div>
-    </div>
-
-    <!-- NORA -->
-    <div class="ap" id="pgNora">
-      <div class="nh">
-        <div class="na">✦</div>
-        <div><div class="nn">NORA</div><div class="ns">Asistente financiero · NexFX</div></div>
-        <div class="no"><span class="dot"></span>ACTIVA</div>
-      </div>
-      <div class="cw">
-        <div class="cm" id="aMs"><div class="msg bot"><div class="ms">✦ NORA</div>¡Hola! Soy NORA, tu asistente financiero en NexFX. Puedo ayudarte con divisas, criptomonedas, economía y más. ¿En qué te ayudo?</div></div>
-        <div class="cb2"><input class="ci" id="aI" placeholder="Pregúntale algo a NORA..." onkeydown="if(event.key==='Enter')sA()"/><button class="sb" id="aSB" onclick="sA()">➤</button></div>
-      </div>
-    </div>
-
-    <!-- COMMENTS -->
-    <div class="ap" id="pgComments">
-      <div class="sl2">COMUNIDAD · COMENTARIOS Y SUGERENCIAS</div>
-      <div class="comment-form">
-        <div class="comment-form-title">💬 Déjanos tu comentario</div>
-        <div class="comment-form-sub">¿Tienes una duda, sugerencia o algo que quieras decirnos? ¡Escríbenos! Tu opinión nos ayuda a mejorar NexFX.</div>
-        <textarea class="comment-textarea" id="commentText" placeholder="Escribe aquí tu comentario, duda o sugerencia..."></textarea>
-        <div class="comment-type-row">
-          <button class="ctype-btn on" onclick="selType(this,'sugerencia')">💡 Sugerencia</button>
-          <button class="ctype-btn" onclick="selType(this,'pregunta')">❓ Pregunta</button>
-          <button class="ctype-btn" onclick="selType(this,'queja')">⚠️ Queja</button>
+        <div id="rF" style="display: none">
+          <div class="field">
+            <label>NOMBRE</label><input type="text" id="rN" placeholder="Tu nombre" />
+          </div>
+          <div class="field">
+            <label>CORREO</label
+            ><input type="email" id="rE" placeholder="tu@correo.com" autocomplete="email" />
+          </div>
+          <div class="field">
+            <label>CONTRASEÑA</label
+            ><input
+              type="password"
+              id="rP"
+              placeholder="mínimo 6 caracteres"
+              onkeydown="if (event.key === 'Enter') doReg();"
+            />
+          </div>
+          <div class="prv" style="border-radius: 9px; margin-bottom: 10px; padding: 9px 11px">
+            <div class="prv-i" style="font-size: 14px">🔒</div>
+            <div class="prv-t" style="font-size: 11px">
+              Tus datos están seguros. No los compartimos con nadie.
+            </div>
+          </div>
+          <button class="pbtn" onclick="doReg()">CREAR CUENTA</button>
         </div>
-        <button class="comment-send" onclick="postComment()">Enviar comentario ✦</button>
-      </div>
-      <div class="sl2">COMENTARIOS DE LA COMUNIDAD</div>
-      <div class="comment-list" id="commentList">
-        <div class="no-comments">Sé el primero en comentar 🌟</div>
+        <div class="aerr" id="aE"></div>
+        <div class="gl" onclick="closeM('authM')">Continuar como invitado →</div>
       </div>
     </div>
 
-    <!-- BRANDS -->
-    <div class="ap" id="pgBrands">
-      <div class="bc" style="margin-bottom:13px">
-        <div class="be">PARA MARCAS Y EMPRESAS</div>
-        <div class="bt">¿Quieres llegar a nuestra audiencia?</div>
-        <div class="bd">NexFX conecta con usuarios que toman decisiones financieras todos los días.</div>
-        <button class="cbtn" onclick="openM('cM')">🤝 ¿Eres una marca? Contáctanos</button><br/>
-        <button class="devbtn" onclick="openM('dM')" style="margin-top:11px">⌨️ ¿Eres Dev? Escríbeme</button>
+    <!-- CONTACT MODAL -->
+    <div class="ovl" id="cM" onclick="cOvl(event, 'cM')">
+      <div class="modal">
+        <button class="mcl" onclick="closeM('cM')">✕</button>
+        <div class="mt">Contactar a Mork_Oficial</div>
+        <div class="md">
+          ¿Eres una marca interesada en colaborar con NexFX? Elige cómo contactarnos:
+        </div>
+        <a class="copt" href="mailto:nexfx.morkoficial@gmail.com?subject=Colaboracion%20NexFX">
+          <div class="coi em-bg">✉️</div>
+          <div>
+            <div class="cot">Enviar correo</div>
+            <div class="cod">Escríbenos directamente</div>
+          </div>
+        </a>
+        <a
+          class="copt"
+          href="https://www.linkedin.com/in/daniel-alejandro-mugarte-flores-6178063b6"
+          target="_blank"
+          rel="noopener"
+        >
+          <div class="coi li-bg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+              />
+            </svg>
+          </div>
+          <div>
+            <div class="cot">LinkedIn</div>
+            <div class="cod">Perfil de Mork_Oficial</div>
+          </div>
+        </a>
       </div>
-      <div class="prv"><div class="prv-i">🔒</div><div class="prv-t"><strong>Tus datos están seguros.</strong> En NexFX nunca vendemos ni compartimos tu información personal con terceros.</div></div>
     </div>
 
-    <!-- PROFILE -->
-    <div class="ap" id="pgProfile">
-      <div class="ph"><div class="pav" id="pAv">?</div><div class="pnm" id="pNm">—</div><div class="pem" id="pEm">—</div><div class="pb">NEXFX MEMBER</div></div>
-      <div class="mi" onclick="shareApp()"><div class="mii">📤</div><div class="mit"><div class="mttl">Compartir NexFX</div><div class="mds">Comparte con tus amigos</div></div><div class="mar">›</div></div>
-      <div class="mi" onclick="showP('Comments',null)"><div class="mii">💬</div><div class="mit"><div class="mttl">Comunidad</div><div class="mds">Ver comentarios y sugerencias</div></div><div class="mar">›</div></div>
-      <div class="mi" onclick="openM('cM')"><div class="mii">🤝</div><div class="mit"><div class="mttl">Colaboraciones</div><div class="mds">¿Eres una marca? Escríbenos</div></div><div class="mar">›</div></div>
-      <div class="mi" onclick="openM('dM')"><div class="mii">⌨️</div><div class="mit"><div class="mttl">¿Eres Dev? Escríbeme</div><div class="mds">LinkedIn · GitHub</div></div><div class="mar">›</div></div>
-      <div class="mi" onclick="toggleTheme()"><div class="mii" id="tMI">🌙</div><div class="mit"><div class="mttl">Modo oscuro / claro</div><div class="mds">Optimizado para batería</div></div><div class="mar">›</div></div>
-      <div class="mi" onclick="toggleSeniorMode()"><div class="mii">👴</div><div class="mit"><div class="mttl" id="seniorModeLabel">Modo Fácil (letra grande)</div><div class="mds">Para mayor comodidad visual</div></div><div class="mar">›</div></div>
-      <div class="mi" onclick="doLogout()"><div class="mii">🚪</div><div class="mit"><div class="mttl">Cerrar sesión</div></div><div class="mar">›</div></div>
-      <div class="cftr">© 2025 MORK_OFICIAL · NEXFX<br/>TODOS LOS DERECHOS RESERVADOS · v3.0</div>
+    <!-- DEV MODAL -->
+    <div class="ovl" id="dM" onclick="cOvl(event, 'dM')">
+      <div class="modal">
+        <button class="mcl" onclick="closeM('dM')">✕</button>
+        <div class="mt">¿Eres Dev o programador/a?</div>
+        <div class="md">
+          Me encantaría conectar. Escríbeme por donde prefieras — colaboraciones, proyectos o
+          feedback técnico.
+        </div>
+        <a
+          class="copt"
+          href="https://www.linkedin.com/in/daniel-alejandro-mugarte-flores-6178063b6"
+          target="_blank"
+          rel="noopener"
+        >
+          <div class="coi li-bg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+              />
+            </svg>
+          </div>
+          <div>
+            <div class="cot">LinkedIn</div>
+            <div class="cod">Mensaje directo a Mork_Oficial</div>
+          </div>
+        </a>
+        <a class="copt" href="https://github.com/MorkOfical" target="_blank" rel="noopener">
+          <div class="coi gh-bg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+              <path
+                d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"
+              />
+            </svg>
+          </div>
+          <div>
+            <div class="cot">GitHub</div>
+            <div class="cod">github.com/MorkOfical</div>
+          </div>
+        </a>
+        <a class="copt" href="mailto:nexfx.morkoficial@gmail.com?subject=Colaboracion%20Dev">
+          <div class="coi em-bg">✉️</div>
+          <div>
+            <div class="cot">Correo</div>
+            <div class="cod">Escríbenos directamente</div>
+          </div>
+        </a>
+      </div>
     </div>
-  </div>
-  <div class="abn">
-    <button class="bni on" onclick="showP('Monitor',this)"><span class="bnc">📡</span>Monitor</button>
-    <button class="bni" onclick="showP('Conv',this)"><span class="bnc">💱</span>Cambio</button>
-    <button class="bni" onclick="showP('Chart',this)"><span class="bnc">📊</span>Gráfica</button>
-    <button class="bni" onclick="showP('Nora',this)"><span class="bnc">✦</span>NORA</button>
-    <button class="bni" onclick="showP('Comments',this)"><span class="bnc">💬</span>Comunidad</button>
-    <button class="bni" onclick="showP('Profile',this)"><span class="bnc">👤</span>Perfil</button>
-  </div>
-</div>
 
-<!-- FLOAT NORA -->
-<div class="nb">
-  <div class="nhi" id="nHi">Si necesitas ayuda, ¡presióname!</div>
-  <button class="nbb" onclick="togF()">✦</button>
-</div>
-<div class="fp" id="fP">
-  <div class="fh">
-    <div class="fav">✦</div>
-    <div><div class="fnm">NORA</div><div class="fsu">Asistente · NexFX</div></div>
-    <button class="fcl" onclick="togF()">✕</button>
-  </div>
-  <div class="fm" id="fMs"><div class="msg bot" style="font-size:12px"><div class="ms" style="font-size:8px">✦ NORA</div>¡Hola! Soy NORA. ¿En qué te ayudo?</div></div>
-  <div class="fb"><input class="fi2" id="fI" placeholder="Pregúntale algo a NORA..." onkeydown="if(event.key==='Enter')sF()"/><button class="fs" id="fSB" onclick="sF()">➤</button></div>
-</div>
-
-<!-- AUTH MODAL -->
-<div class="ovl" id="authM" onclick="cOvl(event,'authM')">
-  <div class="am">
-    <button class="mcl" onclick="closeM('authM')">✕</button>
-    <div class="aw">NexFX</div>
-    <div class="aby">BY MORK_OFICIAL</div>
-    <div class="atabs">
-      <button class="atab on" id="tL" onclick="swTab('login')">ENTRAR</button>
-      <button class="atab" id="tR" onclick="swTab('reg')">REGISTRO</button>
+    <!-- LANG MODAL -->
+    <div class="ovl" id="lgM" onclick="cOvl(event, 'lgM')">
+      <div class="modal" style="max-width: 450px">
+        <button class="mcl" onclick="closeM('lgM')">✕</button>
+        <div class="mt">Select Language / Seleccionar Idioma</div>
+        <div class="md">Choose your preferred language for NexFX.</div>
+        <div class="lgr" id="lgr"></div>
+      </div>
     </div>
-    <div id="lF">
-      <div class="field"><label>CORREO</label><input type="email" id="lE" placeholder="tu@correo.com" autocomplete="email"/></div>
-      <div class="field"><label>CONTRASEÑA</label><input type="password" id="lP" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/></div>
-      <button class="pbtn" onclick="doLogin()">INICIAR SESIÓN</button>
-    </div>
-    <div id="rF" style="display:none">
-      <div class="field"><label>NOMBRE</label><input type="text" id="rN" placeholder="Tu nombre"/></div>
-      <div class="field"><label>CORREO</label><input type="email" id="rE" placeholder="tu@correo.com" autocomplete="email"/></div>
-      <div class="field"><label>CONTRASEÑA</label><input type="password" id="rP" placeholder="mínimo 6 caracteres" onkeydown="if(event.key==='Enter')doReg()"/></div>
-      <div class="prv" style="border-radius:9px;margin-bottom:10px;padding:9px 11px"><div class="prv-i" style="font-size:14px">🔒</div><div class="prv-t" style="font-size:11px">Tus datos están seguros. No los compartimos con nadie.</div></div>
-      <button class="pbtn" onclick="doReg()">CREAR CUENTA</button>
-    </div>
-    <div class="aerr" id="aE"></div>
-    <div class="gl" onclick="closeM('authM')">Continuar como invitado →</div>
-  </div>
-</div>
 
-<!-- CONTACT MODAL -->
-<div class="ovl" id="cM" onclick="cOvl(event,'cM')">
-  <div class="modal">
-    <button class="mcl" onclick="closeM('cM')">✕</button>
-    <div class="mt">Contactar a Mork_Oficial</div>
-    <div class="md">¿Eres una marca interesada en colaborar con NexFX? Elige cómo contactarnos:</div>
-    <a class="copt" href="mailto:nexfx.morkoficial@gmail.com?subject=Colaboracion%20NexFX">
-      <div class="coi em-bg">✉️</div>
-      <div><div class="cot">Enviar correo</div><div class="cod">Escríbenos directamente</div></div>
-    </a>
-    <a class="copt" href="https://www.linkedin.com/in/daniel-alejandro-mugarte-flores-6178063b6" target="_blank" rel="noopener">
-      <div class="coi li-bg"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
-      <div><div class="cot">LinkedIn</div><div class="cod">Perfil de Mork_Oficial</div></div>
-    </a>
-  </div>
-</div>
+    <div class="toast" id="toast"></div>
 
-<!-- DEV MODAL -->
-<div class="ovl" id="dM" onclick="cOvl(event,'dM')">
-  <div class="modal">
-    <button class="mcl" onclick="closeM('dM')">✕</button>
-    <div class="mt">¿Eres Dev o programador/a?</div>
-    <div class="md">Me encantaría conectar. Escríbeme por donde prefieras — colaboraciones, proyectos o feedback técnico.</div>
-    <a class="copt" href="https://www.linkedin.com/in/daniel-alejandro-mugarte-flores-6178063b6" target="_blank" rel="noopener">
-      <div class="coi li-bg"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
-      <div><div class="cot">LinkedIn</div><div class="cod">Mensaje directo a Mork_Oficial</div></div>
-    </a>
-    <a class="copt" href="https://github.com/MorkOfical" target="_blank" rel="noopener">
-      <div class="coi gh-bg"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></div>
-      <div><div class="cot">GitHub</div><div class="cod">github.com/MorkOfical</div></div>
-    </a>
-    <a class="copt" href="mailto:nexfx.morkoficial@gmail.com?subject=Colaboracion%20Dev">
-      <div class="coi em-bg">✉️</div>
-      <div><div class="cot">Correo</div><div class="cod">Escríbenos directamente</div></div>
-    </a>
-  </div>
-</div>
-
-<!-- LANG MODAL -->
-<div class="ovl" id="lgM" onclick="cOvl(event,'lgM')">
-  <div class="modal" style="max-width:450px">
-    <button class="mcl" onclick="closeM('lgM')">✕</button>
-    <div class="mt">Select Language / Seleccionar Idioma</div>
-    <div class="md">Choose your preferred language for NexFX.</div>
-    <div class="lgr" id="lgr"></div>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
-
-<script src="index-1.js"></script>
-</body>
+    <script src="index-1.js"></script>
+  </body>
 </html>
