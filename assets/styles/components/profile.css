@@ -1,0 +1,104 @@
+/* Perfil de usuario y menú de ajustes */
+.ph {
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  padding: clamp(20px, 3.5vw, 32px);
+  text-align: center;
+  margin-bottom: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.ph::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--teal), transparent);
+}
+.pav {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--bg);
+  margin: 0 auto 11px;
+  box-shadow: 0 0 24px rgba(0, 245, 212, 0.2);
+}
+.pnm {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 3px;
+}
+.pem {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+.pb {
+  display: inline-block;
+  margin-top: 9px;
+  background: rgba(0, 245, 212, 0.08);
+  border: 1px solid rgba(0, 245, 212, 0.25);
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--teal);
+  font-family: 'JetBrains Mono', monospace;
+}
+.mi {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 13px;
+  margin-bottom: 7px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.mi:hover {
+  border-color: var(--teal);
+  transform: translateX(3px);
+}
+.mii {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.mit {
+  flex: 1;
+}
+.mttl {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+}
+.mds {
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 1px;
+}
+.mar {
+  color: var(--muted);
+  font-size: 15px;
+}
+.cftr {
+  text-align: center;
+  padding: 16px 12px 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--muted2);
+  line-height: 2.2;
+}
