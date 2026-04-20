@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<!-- NexFX © 2025 Mork_Oficial. All rights reserved. -->
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5"/>
+<meta name="theme-color" content="#03050f"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-title" content="NexFX"/>
+<title>NexFX — by Mork_Oficial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#03050f;--bg2:#060a18;--card:#0a1020;--card2:#0f1830;
+  --border:#162040;--border2:#1e2d55;
+  --teal:#00f5d4;--teal2:#00c4aa;--blue:#3b82f6;--violet:#8b5cf6;
+  --green:#22d3a0;--red:#f43f5e;
+  --text:#e2eaf8;--text2:#8faac8;--muted:#3d5278;--muted2:#243350;
+  --shadow:rgba(0,0,0,.5);--tb:rgba(3,5,15,.93);
+  --fs:1; /* font scale factor */
+}
+body.light{
+  --bg:#f0f4ff;--bg2:#e4eaf8;--card:#fff;--card2:#f7f9ff;
+  --border:#d0daf0;--border2:#b8cae8;
+  --teal:#0097a7;--teal2:#00838f;--blue:#1d6ae5;--violet:#7c3aed;
+  --green:#059669;--red:#dc2626;
+  --text:#0f172a;--text2:#475569;--muted:#64748b;--muted2:#94a3b8;
+  --shadow:rgba(0,0,0,.12);--tb:rgba(240,244,255,.93);
+}
+/* SENIOR MODE */
+body.senior{--fs:1.18}
+body.senior .tb-logo{font-size:clamp(24px,3.5vw,32px)}
+body.senior .htitle{font-size:clamp(38px,7vw,80px)}
+body.senior .hsub,.senior .fdesc,.senior .bd,.senior .prv-t{font-size:clamp(16px,2vw,20px)!important;line-height:1.9!important}
+body.senior .ft,.senior .mttl,.senior .cot,.senior .co-ttl{font-size:clamp(17px,2.2vw,21px)!important}
+body.senior .cinput,.senior .sw-input,.senior .af{font-size:clamp(24px,4vw,30px)!important}
+body.senior .csel,.senior .cur-sel{font-size:16px!important;padding:12px!important}
+body.senior .pbtn,.senior .hp,.senior .cbtn,.senior .tbtn{font-size:16px!important;padding:16px 28px!important}
+body.senior .msg{font-size:16px!important;line-height:1.8!important;padding:16px!important}
+body.senior .pill{font-size:12px!important;padding:6px 14px!important}
+body.senior .chip{font-size:14px!important;padding:5px 12px!important}
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;min-height:100dvh;transition:background .3s,color .3s;font-size:calc(1rem * var(--fs,1))}
+.grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(0,245,212,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,245,212,.025) 1px,transparent 1px);background-size:52px 52px}
+body.light .grid{opacity:.3}
+
+/* ── TOPBAR ── */
+.topbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:10px clamp(12px,3vw,36px);gap:8px;border-bottom:1px solid var(--border);background:var(--tb);backdrop-filter:blur(14px);position:sticky;top:0;z-index:200}
+.tb-left{display:flex;align-items:center;gap:6px}
+.tb-logo{font-family:'Syne',sans-serif;font-size:clamp(20px,2.8vw,26px);font-weight:800;letter-spacing:-1px;text-align:center;background:linear-gradient(135deg,var(--teal),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.tb-right{display:flex;align-items:center;gap:6px;justify-content:flex-end}
+.ibtn{background:var(--card);border:1px solid var(--border);border-radius:9px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:border-color .2s;flex-shrink:0}
+.ibtn:hover{border-color:var(--teal)}
+.lbtn{background:var(--card);border:1px solid var(--border);border-radius:9px;padding:6px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text2);cursor:pointer;transition:all .2s;white-space:nowrap}
+.lbtn:hover{border-color:var(--teal);color:var(--teal)}
+.obtn{border:1px solid var(--border2);background:none;color:var(--text2);border-radius:9px;padding:7px 13px;font-family:'Outfit',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;white-space:nowrap}
+.obtn:hover{border-color:var(--teal);color:var(--teal)}
+.tbtn{background:linear-gradient(135deg,var(--teal),var(--teal2));color:var(--bg);border:none;border-radius:9px;padding:7px 14px;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;box-shadow:0 4px 14px rgba(0,245,212,.2)}
+.tbtn:hover{transform:translateY(-1px)}
+@media(max-width:480px){.obtn{display:none}}
+
+/* ── HERO ── */
+.hero{display:flex;flex-direction:column;align-items:center;padding:clamp(32px,6vh,70px) clamp(14px,4vw,40px) clamp(16px,3vh,32px);text-align:center;position:relative;z-index:1}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:clamp(8px,1.1vw,10px);letter-spacing:4px;color:var(--teal);margin-bottom:12px;background:rgba(0,245,212,.08);border:1px solid rgba(0,245,212,.2);border-radius:20px;padding:5px 14px;display:inline-block}
+.htitle{font-family:'Syne',sans-serif;font-size:clamp(30px,6vw,72px);font-weight:800;letter-spacing:-2px;line-height:1.05;margin-bottom:10px;background:linear-gradient(135deg,var(--text) 0%,var(--teal) 60%,var(--blue) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hsub{font-size:clamp(13px,1.7vw,16px);color:var(--text2);max-width:500px;line-height:1.7;margin-bottom:22px}
+.hbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:24px}
+.hp{background:linear-gradient(135deg,var(--teal),var(--teal2));color:var(--bg);border:none;border-radius:14px;padding:12px 24px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .25s;box-shadow:0 8px 22px rgba(0,245,212,.25)}
+.hp:hover{transform:translateY(-2px)}
+.hg{background:none;border:1px solid var(--border2);color:var(--text);border-radius:14px;padding:12px 24px;font-family:'Syne',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .25s}
+.hg:hover{border-color:var(--teal);color:var(--teal)}
+
+/* ── LIVE CARD ── */
+.lcard{width:100%;max-width:460px;background:var(--card);border:1px solid var(--border2);border-radius:20px;padding:clamp(16px,2.5vw,24px);position:relative;overflow:hidden;margin-bottom:14px}
+.lcard::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--teal),transparent)}
+.lc-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.lc-pair{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--muted)}
+.pill{display:inline-flex;align-items:center;gap:5px;background:rgba(34,211,160,.08);border:1px solid rgba(34,211,160,.2);border-radius:20px;padding:3px 10px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--green)}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.lc-rate{font-family:'Syne',sans-serif;font-size:clamp(38px,6vw,56px);font-weight:800;letter-spacing:-2px;line-height:1;background:linear-gradient(135deg,var(--teal),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px;transition:all .4s}
+.lc-rate.up{background:linear-gradient(135deg,var(--green),var(--teal));-webkit-background-clip:text;background-clip:text}
+.lc-rate.down{background:linear-gradient(135deg,var(--red),#f97316);-webkit-background-clip:text;background-clip:text}
+.lc-sub{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.chip{font-family:'JetBrains Mono',monospace;font-size:11px;padding:3px 9px;border-radius:20px;font-weight:600}
+.chip.pos{background:rgba(34,211,160,.1);color:var(--green);border:1px solid rgba(34,211,160,.2)}
+.chip.neg{background:rgba(244,63,94,.1);color:var(--red);border:1px solid rgba(244,63,94,.2)}
+.chip.neu{background:rgba(61,82,120,.15);color:var(--muted);border:1px solid var(--border)}
+.lc-time{font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+
+/* ── CONVERTER WIDGET ── */
+.cwidget{width:100%;max-width:460px;background:var(--card);border:1px solid var(--border2);border-radius:20px;padding:clamp(14px,2.5vw,22px);position:relative;overflow:hidden}
+.cwidget::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--teal),transparent)}
+.cw-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--muted);margin-bottom:12px}
+.cw-grid{display:grid;grid-template-columns:1fr 48px 1fr;gap:8px;align-items:start}
+.cw-col{display:flex;flex-direction:column;gap:6px}
+.cw-cl{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--muted)}
+.csel{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:8px 9px;color:var(--text);font-size:13px;outline:none;font-family:'Outfit',sans-serif;cursor:pointer}
+.csel:focus{border-color:var(--teal)}
+.cinput{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:11px;font-family:'Syne',sans-serif;font-size:clamp(18px,2.8vw,22px);font-weight:700;color:var(--teal);outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
+.cinput:focus{border-color:var(--teal)}
+.cprice{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--teal);opacity:.75;min-height:15px}
+.cw-mid{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px;padding-top:22px}
+.arrbtn{background:var(--card2);border:1px solid var(--border2);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:var(--teal);font-size:18px;font-weight:700;flex-shrink:0;line-height:1}
+.arrbtn:hover{border-color:var(--teal);background:rgba(0,245,212,.1);transform:scale(1.1)}
+.arr-lbl{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;color:var(--muted);text-align:center}
+.cresult{margin-top:12px;background:linear-gradient(135deg,rgba(0,245,212,.06),rgba(59,130,246,.04));border:1px solid rgba(0,245,212,.15);border-radius:13px;padding:13px 15px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.cres-num{font-family:'Syne',sans-serif;font-size:clamp(16px,2.5vw,22px);font-weight:800;background:linear-gradient(135deg,var(--teal),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cres-rate{font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px}
+.bstrip{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px dashed var(--border);font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;flex-wrap:wrap;gap:8px}
+.bs-btn{background:none;border:1px solid rgba(139,92,246,.4);color:var(--violet);border-radius:8px;padding:4px 11px;font-size:11px;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s}
+.bs-btn:hover{background:rgba(139,92,246,.1)}
+
+/* ── PAIRS ── */
+.pw{width:100%;max-width:940px;margin:16px auto 0;padding:0 clamp(14px,4vw,40px);position:relative;z-index:1}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:8px}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:12px;cursor:pointer;transition:all .2s}
+.pc:hover{border-color:var(--teal);transform:translateY(-2px)}
+.pn{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;margin-bottom:3px}
+.pr{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--teal)}
+
+/* ── FEATURES ── */
+.fw{max-width:1080px;margin:24px auto 0;padding:0 clamp(14px,4vw,40px);position:relative;z-index:1}
+.fg{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.fc{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px}
+.fi{font-size:24px;margin-bottom:8px}
+.ft{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:4px}
+.fd{font-size:12px;color:var(--text2);line-height:1.6}
+.prv{background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.2);border-radius:13px;padding:13px 16px;display:flex;align-items:flex-start;gap:11px;margin-top:14px}
+.prv-i{font-size:18px;flex-shrink:0;margin-top:2px}
+.prv-t{font-size:12px;color:var(--text2);line-height:1.7}
+.prv-t strong{color:var(--text);font-weight:600}
+
+/* ── BRANDS ── */
+.bw{max-width:660px;margin:24px auto 0;padding:0 clamp(14px,4vw,40px);position:relative;z-index:1}
+.bc{background:linear-gradient(145deg,var(--card),var(--card2));border:1px solid var(--border2);border-radius:20px;padding:clamp(20px,3.5vw,32px);text-align:center;position:relative;overflow:hidden}
+.bc::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--violet),transparent)}
+.be{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:4px;color:var(--violet);margin-bottom:9px}
+.bt{font-family:'Syne',sans-serif;font-size:clamp(17px,2.4vw,22px);font-weight:800;margin-bottom:9px;line-height:1.2}
+.bd{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:18px}
+.cbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--violet),var(--blue));border:none;border-radius:13px;padding:12px 22px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:white;cursor:pointer;transition:all .25s;box-shadow:0 8px 22px rgba(139,92,246,.25)}
+.cbtn:hover{transform:translateY(-2px)}
+.devbtn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px dashed var(--border2);border-radius:9px;padding:7px 13px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted);cursor:pointer;transition:all .2s;margin-top:10px}
+.devbtn:hover{border-color:var(--teal);color:var(--teal)}
+
+/* ── FOOTER ── */
+.sftr{border-top:1px solid var(--border);padding:18px clamp(14px,4vw,40px);margin-top:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:relative;z-index:1}
+.fcp{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted2);line-height:1.9}
+
+/* ── MODALS ── */
+.ovl{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(8px);z-index:500;display:flex;align-items:center;justify-content:center;padding:18px;opacity:0;pointer-events:none;transition:opacity .3s;overflow-y:auto}
+.ovl.open{opacity:1;pointer-events:all}
+.modal{background:var(--card);border:1px solid var(--border2);border-radius:20px;padding:clamp(20px,4vw,32px);width:100%;max-width:410px;position:relative;transform:translateY(18px);transition:transform .3s}
+.ovl.open .modal{transform:translateY(0)}
+.mt{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;margin-bottom:6px}
+.md{font-size:13px;color:var(--text2);margin-bottom:18px;line-height:1.6}
+.mcl{position:absolute;top:13px;right:13px;background:var(--bg2);border:1px solid var(--border);border-radius:50%;width:29px;height:29px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;transition:all .2s}
+.mcl:hover{border-color:var(--red);color:var(--red)}
+.copt{display:flex;align-items:center;gap:13px;background:var(--bg2);border:1px solid var(--border);border-radius:13px;padding:13px 15px;margin-bottom:9px;cursor:pointer;transition:all .2s;text-decoration:none;color:var(--text)}
+.copt:hover{border-color:var(--teal);transform:translateX(4px)}
+.coi{width:40px;height:40px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px}
+.li-bg{background:#0a66c2}
+.gh-bg{background:#24292f}
+.em-bg{background:linear-gradient(135deg,var(--teal),var(--blue))}
+.cot{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:2px}
+.cod{font-size:11px;color:var(--muted)}
+.am{background:var(--card);border:1px solid var(--border2);border-radius:22px;padding:clamp(20px,4vw,32px);width:100%;max-width:380px;position:relative;transform:translateY(18px);transition:transform .3s}
+.ovl.open .am{transform:translateY(0)}
+.aw{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--teal),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:2px;letter-spacing:-1px}
+.aby{font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:2px;margin-bottom:16px}
+.atabs{display:flex;gap:5px;margin-bottom:16px;background:var(--bg2);border-radius:11px;padding:4px}
+.atab{flex:1;padding:8px;border-radius:8px;border:none;background:none;color:var(--muted);font-family:'Syne',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+.atab.on{background:var(--card);color:var(--teal);box-shadow:0 2px 8px var(--shadow)}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:9px;letter-spacing:3px;color:var(--muted);margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.field input{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:12px 13px;color:var(--text);font-size:14px;outline:none;transition:border-color .2s;font-family:'Outfit',sans-serif}
+.field input:focus{border-color:var(--teal)}
+.pbtn{width:100%;background:linear-gradient(135deg,var(--teal),var(--teal2));color:var(--bg);border:none;border-radius:11px;padding:13px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(0,245,212,.2);transition:all .2s;margin-top:3px}
+.pbtn:hover{transform:translateY(-1px)}
+.aerr{color:var(--red);font-size:11px;text-align:center;margin-top:8px;min-height:16px;font-family:'JetBrains Mono',monospace}
+.gl{text-align:center;margin-top:11px;font-size:12px;color:var(--muted);cursor:pointer;transition:color .2s}
+.gl:hover{color:var(--teal)}
+
+/* ── LANG MODAL ── */
+.lgr{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:7px;margin-top:13px}
+.lo{background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:10px 8px;text-align:center;cursor:pointer;transition:all .2s}
+.lo:hover,.lo.sel{border-color:var(--teal);color:var(--teal);background:rgba(0,245,212,.05)}
+.lf{font-size:19px;margin-bottom:3px}
+.ln{font-size:10px;font-family:'JetBrains Mono',monospace}
+
+/* ── APP SHELL ── */
+#app{display:none;min-height:100dvh;flex-direction:column;position:relative;z-index:10}
+#app.on{display:flex}
+.atb{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:10px clamp(12px,2.5vw,32px);border-bottom:1px solid var(--border);background:var(--tb);backdrop-filter:blur(14px);position:sticky;top:0;z-index:200;gap:6px}
+.alo{font-family:'Syne',sans-serif;font-size:clamp(18px,2.5vw,24px);font-weight:800;letter-spacing:-1px;text-align:center;background:linear-gradient(135deg,var(--teal),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.anv{display:flex;align-items:center;gap:3px}
+.ani{padding:7px 11px;border-radius:9px;border:none;background:none;color:var(--text2);font-family:'Outfit',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;white-space:nowrap}
+.ani.on{background:rgba(0,245,212,.1);color:var(--teal)}
+.ani:hover:not(.on){color:var(--text)}
+@media(max-width:640px){.anv{display:none}}
+.ari{display:flex;align-items:center;gap:5px;justify-content:flex-end}
+.aun{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+@media(max-width:400px){.aun{display:none}}
+.ac{flex:1;padding:clamp(13px,2.5vw,32px);max-width:1200px;margin:0 auto;width:100%}
+.abn{display:none;border-top:1px solid var(--border);background:var(--tb);backdrop-filter:blur(14px);position:sticky;bottom:0;z-index:200}
+@media(max-width:640px){.abn{display:flex}}
+.bni{flex:1;display:flex;flex-direction:column;align-items:center;padding:9px 0 13px;gap:2px;cursor:pointer;font-family:'Outfit',sans-serif;font-size:9px;color:var(--muted);transition:color .2s;border:none;background:none}
+.bni.on{color:var(--teal)}
+.bnc{font-size:18px;line-height:1}
+.ap{display:none;animation:fi .22s ease}
+.ap.on{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+
+/* APP HERO */
+.ah{background:linear-gradient(145deg,var(--card),var(--card2));border:1px solid var(--border2);border-radius:20px;padding:clamp(16px,2.5vw,28px);margin-bottom:13px;position:relative;overflow:hidden}
+.ah::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,var(--teal),transparent)}
+.ah::after{content:'NEXFX';position:absolute;right:-10px;bottom:-18px;font-family:'Syne',sans-serif;font-size:86px;font-weight:800;color:rgba(0,245,212,.025);pointer-events:none;letter-spacing:-4px}
+.br{font-family:'Syne',sans-serif;font-size:clamp(42px,7vw,70px);font-weight:800;letter-spacing:-3px;line-height:1;background:linear-gradient(135deg,var(--teal),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:7px;transition:all .4s}
+.br.up{background:linear-gradient(135deg,var(--green),var(--teal));-webkit-background-clip:text;background-clip:text}
+.br.down{background:linear-gradient(135deg,var(--red),#f97316);-webkit-background-clip:text;background-clip:text}
+.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:9px;margin-bottom:13px}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px 14px}
+.sl{font-size:9px;letter-spacing:3px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:5px}
+.sv{font-family:'Syne',sans-serif;font-size:19px;font-weight:700}
+.sl2{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:4px;color:var(--muted);margin-bottom:9px;text-transform:uppercase}
+
+/* APP CONVERTER */
+.cr{display:grid;grid-template-columns:1fr auto 1fr;gap:9px;align-items:start;margin-bottom:11px}
+@media(max-width:460px){.cr{grid-template-columns:1fr}.sm{justify-content:center;padding:4px 0}}
+.cb{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:14px}
+.cfr{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.cf{font-size:21px;flex-shrink:0}
+.sm{display:flex;align-items:center;justify-content:center;padding-top:20px}
+.sbt{background:var(--card2);border:1px solid var(--border2);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:17px;cursor:pointer;transition:all .25s}
+.sbt:hover{border-color:var(--teal);transform:rotate(180deg)}
+.af{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:12px;font-family:'Syne',sans-serif;font-size:clamp(17px,2.5vw,22px);font-weight:700;color:var(--teal);outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
+.af:focus{border-color:var(--teal)}
+.rc{background:linear-gradient(135deg,rgba(0,245,212,.06),rgba(59,130,246,.04));border:1px solid rgba(0,245,212,.15);border-radius:14px;padding:16px}
+.rn{font-family:'Syne',sans-serif;font-size:clamp(19px,3vw,28px);font-weight:800;background:linear-gradient(135deg,var(--teal),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px}
+.rr{font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:1px}
+
+/* ── CHART ── */
+.chart-card{background:var(--card);border:1px solid var(--border2);border-radius:18px;padding:clamp(14px,2.5vw,24px);margin-bottom:13px;position:relative}
+.chart-card::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,var(--teal),transparent)}
+.chart-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.chart-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700}
+.chart-sel{background:var(--bg2);border:1px solid var(--border);border-radius:9px;padding:6px 10px;color:var(--text);font-size:12px;outline:none;font-family:'Outfit',sans-serif;cursor:pointer}
+.chart-tabs{display:flex;gap:4px}
+.ctab{background:none;border:1px solid var(--border);border-radius:8px;padding:5px 10px;font-size:11px;color:var(--muted);cursor:pointer;font-family:'JetBrains Mono',monospace;transition:all .2s}
+.ctab.on{background:rgba(0,245,212,.1);border-color:var(--teal);color:var(--teal)}
+.chart-wrap{position:relative;height:clamp(180px,35vw,280px)}
+
+/* NORA */
+.nh{display:flex;align-items:center;gap:11px;background:var(--card);border:1px solid var(--border2);border-radius:15px;padding:12px 15px;margin-bottom:11px}
+.na{width:40px;height:40px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--teal),var(--blue));display:flex;align-items:center;justify-content:center;font-size:19px;box-shadow:0 0 16px rgba(0,245,212,.2)}
+.nn{font-family:'Syne',sans-serif;font-size:15px;font-weight:700}
+.ns{font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:1px}
+.no{margin-left:auto;display:flex;align-items:center;gap:4px;font-size:9px;color:var(--green);font-family:'JetBrains Mono',monospace;letter-spacing:1px}
+.cw{display:flex;flex-direction:column;height:clamp(360px,55dvh,540px)}
+.cm{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:9px;padding-bottom:6px;padding-right:4px}
+.cm::-webkit-scrollbar{width:3px}
+.cm::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+.msg{max-width:82%;padding:11px 13px;border-radius:15px;font-size:13px;line-height:1.55}
+.msg.bot{background:var(--card2);border:1px solid var(--border);border-radius:15px 15px 15px 4px;align-self:flex-start}
+.msg.user{background:linear-gradient(135deg,var(--teal),var(--teal2));color:var(--bg);border-radius:15px 15px 4px 15px;align-self:flex-end;font-weight:500}
+.ms{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--teal);margin-bottom:4px}
+.cb2{display:flex;gap:7px;padding-top:9px;border-top:1px solid var(--border);margin-top:7px}
+.ci{flex:1;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 13px;color:var(--text);font-size:13px;outline:none;font-family:'Outfit',sans-serif;transition:border-color .2s}
+.ci:focus{border-color:var(--teal)}
+.sb{background:linear-gradient(135deg,var(--teal),var(--teal2));border:none;border-radius:12px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;flex-shrink:0;transition:all .2s}
+.sb:active{transform:scale(.9)}
+.sb:disabled{opacity:.35;cursor:not-allowed}
+
+/* ── COMMENTS ── */
+.comments-wrap{margin-top:13px}
+.comment-form{background:var(--card);border:1px solid var(--border2);border-radius:16px;padding:18px;margin-bottom:14px}
+.comment-form-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:4px}
+.comment-form-sub{font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6}
+.comment-textarea{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:12px;color:var(--text);font-size:13px;outline:none;font-family:'Outfit',sans-serif;resize:vertical;min-height:80px;transition:border-color .2s}
+.comment-textarea:focus{border-color:var(--teal)}
+.comment-type-row{display:flex;gap:8px;margin:10px 0;flex-wrap:wrap}
+.ctype-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:5px 13px;font-size:11px;color:var(--muted);cursor:pointer;transition:all .2s;font-family:'Outfit',sans-serif}
+.ctype-btn.on{border-color:var(--teal);color:var(--teal);background:rgba(0,245,212,.08)}
+.comment-send{background:linear-gradient(135deg,var(--teal),var(--teal2));color:var(--bg);border:none;border-radius:10px;padding:10px 20px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;margin-top:8px}
+.comment-send:hover{transform:translateY(-1px)}
+.comment-list{display:flex;flex-direction:column;gap:10px}
+.comment-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px}
+.comment-meta{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap}
+.comment-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--blue));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--bg);font-family:'Syne',sans-serif;flex-shrink:0}
+.comment-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:700}
+.comment-date{font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.comment-tag{font-size:9px;letter-spacing:1px;padding:2px 8px;border-radius:10px;font-family:'JetBrains Mono',monospace}
+.tag-sugerencia{background:rgba(0,245,212,.1);color:var(--teal);border:1px solid rgba(0,245,212,.2)}
+.tag-pregunta{background:rgba(59,130,246,.1);color:var(--blue);border:1px solid rgba(59,130,246,.2)}
+.tag-queja{background:rgba(244,63,94,.1);color:var(--red);border:1px solid rgba(244,63,94,.2)}
+.comment-text{font-size:13px;line-height:1.6;color:var(--text2)}
+.no-comments{text-align:center;padding:24px;color:var(--muted);font-size:13px;font-family:'JetBrains Mono',monospace;letter-spacing:1px}
+
+/* PROFILE */
+.ph{background:var(--card);border:1px solid var(--border2);border-radius:20px;padding:clamp(20px,3.5vw,32px);text-align:center;margin-bottom:12px;position:relative;overflow:hidden}
+.ph::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--teal),transparent)}
+.pav{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--blue));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--bg);margin:0 auto 11px;box-shadow:0 0 24px rgba(0,245,212,.2)}
+.pnm{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:3px}
+.pem{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.pb{display:inline-block;margin-top:9px;background:rgba(0,245,212,.08);border:1px solid rgba(0,245,212,.25);border-radius:20px;padding:3px 12px;font-size:9px;letter-spacing:3px;color:var(--teal);font-family:'JetBrains Mono',monospace}
+.mi{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:13px;margin-bottom:7px;display:flex;align-items:center;gap:11px;cursor:pointer;transition:all .2s}
+.mi:hover{border-color:var(--teal);transform:translateX(3px)}
+.mii{font-size:18px;flex-shrink:0}
+.mit{flex:1}
+.mttl{font-family:'Syne',sans-serif;font-size:13px;font-weight:600}
+.mds{font-size:10px;color:var(--muted);margin-top:1px}
+.mar{color:var(--muted);font-size:15px}
+.cftr{text-align:center;padding:16px 12px 4px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted2);line-height:2.2}
+
+/* FLOAT NORA */
+.nb{position:fixed;bottom:clamp(70px,9dvh,26px);right:clamp(13px,2.5vw,26px);z-index:300;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+@media(max-width:640px){.nb{bottom:76px}}
+.nbb{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--blue));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:21px;box-shadow:0 8px 24px rgba(0,245,212,.35);transition:all .3s}
+.nbb:hover{transform:scale(1.08)}
+.nhi{background:var(--card);border:1px solid var(--border2);border-radius:11px;padding:7px 12px;font-size:11px;font-family:'Outfit',sans-serif;color:var(--text);white-space:nowrap;box-shadow:0 4px 14px var(--shadow);animation:hf 4s ease 2s forwards}
+@keyframes hf{0%{opacity:1}85%{opacity:1}100%{opacity:0;pointer-events:none}}
+.fp{position:fixed;bottom:clamp(134px,17dvh,90px);right:clamp(13px,2.5vw,26px);width:clamp(280px,86vw,360px);max-height:clamp(360px,60dvh,490px);background:var(--card);border:1px solid var(--border2);border-radius:18px;display:flex;flex-direction:column;box-shadow:0 16px 46px var(--shadow);z-index:299;transform:scale(.9) translateY(18px);opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.34,1.56,.64,1);overflow:hidden}
+@media(max-width:640px){.fp{bottom:138px}}
+.fp.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
+.fh{display:flex;align-items:center;gap:9px;padding:12px 14px;border-bottom:1px solid var(--border);flex-shrink:0;position:relative}
+.fh::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--teal),transparent)}
+.fav{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--blue));display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.fnm{font-family:'Syne',sans-serif;font-size:13px;font-weight:700}
+.fsu{font-size:9px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.fcl{margin-left:auto;background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer;transition:color .2s;padding:3px}
+.fcl:hover{color:var(--red)}
+.fm{flex:1;overflow-y:auto;padding:11px;display:flex;flex-direction:column;gap:8px}
+.fm::-webkit-scrollbar{width:3px}
+.fm::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+.fb{display:flex;gap:6px;padding:9px;border-top:1px solid var(--border);flex-shrink:0}
+.fi2{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:8px 11px;color:var(--text);font-size:12px;outline:none;font-family:'Outfit',sans-serif;transition:border-color .2s}
+.fi2:focus{border-color:var(--teal)}
+.fs{background:linear-gradient(135deg,var(--teal),var(--teal2));border:none;border-radius:10px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;flex-shrink:0;transition:all .2s}
+.fs:disabled{opacity:.35;cursor:not-allowed}
+
+/* SENIOR BANNER */
+.senior-banner{background:linear-gradient(135deg,rgba(0,245,212,.1),rgba(59,130,246,.08));border:1px solid rgba(0,245,212,.3);border-radius:14px;padding:14px 18px;margin-bottom:13px;display:flex;align-items:center;gap:12px;animation:fi .4s ease}
+.senior-banner-ico{font-size:24px;flex-shrink:0}
+.senior-banner-txt{font-size:14px;color:var(--text);line-height:1.6}
+.senior-banner-btn{margin-left:auto;background:linear-gradient(135deg,var(--teal),var(--teal2));color:var(--bg);border:none;border-radius:9px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:'Outfit',sans-serif}
+
+.toast{position:fixed;bottom:clamp(68px,9dvh,26px);left:50%;transform:translateX(-50%) translateY(60px);background:var(--card2);border:1px solid var(--teal);border-radius:28px;padding:8px 18px;font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:1px;color:var(--text);transition:transform .3s cubic-bezier(.34,1.56,.64,1);z-index:9999;white-space:nowrap;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="grid"></div>
+
+<!-- LANDING -->
+<div id="land">
+  <nav class="topbar">
+    <div class="tb-left">
+      <button class="lbtn" onclick="openLang()">🌐 Change Language</button>
+      <button class="ibtn" onclick="toggleTheme()" id="tB">🌙</button>
+    </div>
+    <div class="tb-logo">NexFX</div>
+    <div class="tb-right">
+      <button class="obtn" onclick="openAuth('login')">Iniciar Sesión</button>
+      <button class="tbtn" onclick="openAuth('reg')">Registrarse</button>
+    </div>
+  </nav>
+  <section class="hero">
+    <div class="eyebrow">DIVISAS EN TIEMPO REAL · BY MORK_OFICIAL</div>
+    <h1 class="htitle">NexFX</h1>
+    <p class="hsub">Convierte cualquier moneda del mundo al instante, con inteligencia artificial integrada y tasas actualizadas en vivo.</p>
+    <div class="hbtns">
+      <button class="hp" onclick="openAuth('reg')">Comenzar gratis</button>
+      <button class="hg" onclick="document.getElementById('cwid').scrollIntoView({behavior:'smooth'})">Probar ahora</button>
+    </div>
+    <div class="lcard">
+      <div class="lc-hdr">
+        <div class="lc-pair">USD / MXN</div>
+        <div class="pill"><span class="dot"></span>EN VIVO</div>
+      </div>
+      <div class="lc-rate" id="lwR">—</div>
+      <div class="lc-sub">
+        <span class="chip neu" id="lwC">cargando...</span>
+        <span class="lc-time" id="lwT"></span>
+      </div>
+    </div>
+    <div class="cwidget" id="cwid">
+      <div class="cw-lbl">CONVERTIDOR — PRUEBA SIN REGISTRARTE</div>
+      <div class="cw-grid">
+        <div class="cw-col">
+          <div class="cw-cl">DE</div>
+          <select class="csel" id="gF" onchange="gwC()"></select>
+          <input class="cinput" type="number" id="gA" placeholder="0.00" inputmode="decimal" oninput="gwCF()"/>
+          <div class="cprice" id="gFP"></div>
+        </div>
+        <div class="cw-mid">
+          <button class="arrbtn" onclick="gwSw()">↑</button>
+          <div class="arr-lbl">swap</div>
+          <button class="arrbtn" onclick="gwSw()">↓</button>
+        </div>
+        <div class="cw-col">
+          <div class="cw-cl">A</div>
+          <select class="csel" id="gT" onchange="gwC()"></select>
+          <input class="cinput" type="number" id="gR" placeholder="0.00" inputmode="decimal" oninput="gwCT()"/>
+          <div class="cprice" id="gTP"></div>
+        </div>
+      </div>
+      <div class="cresult">
+        <div>
+          <div class="cres-num" id="gRN">Escribe una cantidad</div>
+          <div class="cres-rate" id="gRR">TASA EN TIEMPO REAL</div>
+        </div>
+        <div class="pill"><span class="dot"></span>LIVE</div>
+      </div>
+      <div class="bstrip">
+        <span>¿Tu empresa quiere aparecer aquí?</span>
+        <button class="bs-btn" onclick="openM('cM')">Contáctanos</button>
+      </div>
+    </div>
+  </section>
+  <div class="pw"><div class="pg">
+    <div class="pc"><div class="pn">EUR/MXN</div><div class="pr" id="pEM">—</div></div>
+    <div class="pc"><div class="pn">GBP/MXN</div><div class="pr" id="pGM">—</div></div>
+    <div class="pc"><div class="pn">CAD/MXN</div><div class="pr" id="pCM">—</div></div>
+    <div class="pc"><div class="pn">BRL/MXN</div><div class="pr" id="pBM">—</div></div>
+    <div class="pc"><div class="pn">JPY/MXN</div><div class="pr" id="pJM">—</div></div>
+    <div class="pc"><div class="pn">ARS/MXN</div><div class="pr" id="pAM">—</div></div>
+  </div></div>
+  <div class="fw"><div class="fg">
+    <div class="fc"><div class="fi">📡</div><div class="ft">Tasas en vivo</div><div class="fd">Actualización cada 60 segundos con datos del mercado global.</div></div>
+    <div class="fc"><div class="fi">💱</div><div class="ft">26 divisas mundiales</div><div class="fd">USD, EUR, GBP, JPY, BRL, ARS, COP, CNY y muchas más.</div></div>
+    <div class="fc"><div class="fi">✦</div><div class="ft">NORA — IA Financiera</div><div class="fd">Asistente inteligente que responde en cualquier idioma.</div></div>
+    <div class="fc"><div class="fi">🌙</div><div class="ft">Modo oscuro / claro</div><div class="fd">Optimizado para ahorro de batería. Tú eliges cómo verlo.</div></div>
+  </div>
+  <div class="prv" style="max-width:1080px;margin:14px auto 0"><div class="prv-i">🔒</div><div class="prv-t"><strong>Tus datos están seguros.</strong> En NexFX nunca vendemos ni compartimos tu información personal con terceros. Tus datos se usan únicamente para mejorar tu experiencia.</div></div>
+  </div>
+  <div class="bw"><div class="bc">
+    <div class="be">PARA MARCAS Y EMPRESAS</div>
+    <div class="bt">¿Quieres llegar a nuestra audiencia?</div>
+    <div class="bd">NexFX conecta con usuarios que toman decisiones financieras todos los días. Banners, menciones en NORA IA, afiliados y co-branding disponibles.</div>
+    <button class="cbtn" onclick="openM('cM')">🤝 ¿Eres una marca? Contáctanos</button><br/>
+    <button class="devbtn" onclick="openM('dM')">⌨️ ¿Eres Dev o programador/a? Escríbeme aquí</button>
+  </div></div>
+  <footer class="sftr">
+    <div class="fcp">© 2025 MORK_OFICIAL · NEXFX · TODOS LOS DERECHOS RESERVADOS</div>
+    <button class="devbtn" style="margin:0" onclick="openM('dM')">⌨️ ¿Eres Dev? Escríbeme</button>
+  </footer>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="atb">
+    <nav class="anv">
+      <button class="ani on" onclick="showP('Monitor',this)">Monitor</button>
+      <button class="ani" onclick="showP('Conv',this)">Convertidor</button>
+      <button class="ani" onclick="showP('Chart',this)">Gráfica</button>
+      <button class="ani" onclick="showP('Nora',this)">NORA IA</button>
+      <button class="ani" onclick="showP('Comments',this)">Comunidad</button>
+      <button class="ani" onclick="showP('Brands',this)">Marcas</button>
+    </nav>
+    <div class="alo">NexFX</div>
+    <div class="ari">
+      <span class="aun" id="aUN"></span>
+      <button class="lbtn" onclick="openLang()">🌐</button>
+      <button class="ibtn" onclick="toggleTheme()" id="tB2">🌙</button>
+      <button class="obtn" onclick="showP('Profile',null)">Perfil</button>
+      <button class="obtn" style="color:var(--red);border-color:rgba(244,63,94,.4)" onclick="doLogout()">Salir</button>
+    </div>
+  </div>
+  <div class="ac">
+
+    <!-- MONITOR -->
+    <div class="ap on" id="pgMonitor">
+      <div id="seniorBanner" style="display:none" class="senior-banner">
+        <div class="senior-banner-ico">👴</div>
+        <div class="senior-banner-txt">Detectamos que prefieres letras más grandes. ¿Activamos el <strong>Modo Fácil</strong>?</div>
+        <button class="senior-banner-btn" onclick="activateSenior()">Activar</button>
+      </div>
+      <div class="ah">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px">
+          <div class="pill"><span class="dot"></span>EN VIVO</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted)">USD / MXN</div>
+        </div>
+        <div class="br" id="aR">—</div>
+        <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">
+          <span class="chip neu" id="aC">cargando...</span>
+          <span style="font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace" id="aT"></span>
+        </div>
+      </div>
+      <div class="sg">
+        <div class="sc"><div class="sl">📈 MÁX HOY</div><div class="sv" id="aH">—</div></div>
+        <div class="sc"><div class="sl">📉 MÍN HOY</div><div class="sv" id="aL">—</div></div>
+      </div>
+      <div class="sl2">PARES DESTACADOS</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:8px">
+        <div class="pc"><div class="pn">EUR/MXN</div><div class="pr" id="aPEM">—</div></div>
+        <div class="pc"><div class="pn">GBP/MXN</div><div class="pr" id="aPGM">—</div></div>
+        <div class="pc"><div class="pn">CAD/MXN</div><div class="pr" id="aPCM">—</div></div>
+        <div class="pc"><div class="pn">BRL/MXN</div><div class="pr" id="aPBM">—</div></div>
+        <div class="pc"><div class="pn">JPY/MXN</div><div class="pr" id="aPJM">—</div></div>
+        <div class="pc"><div class="pn">ARS/MXN</div><div class="pr" id="aPAM">—</div></div>
+      </div>
+    </div>
+
+    <!-- CONVERTER -->
+    <div class="ap" id="pgConv">
+      <div class="sl2">CONVERTIDOR UNIVERSAL · 26 DIVISAS</div>
+      <div class="cr">
+        <div class="cb"><div class="cfr"><span class="cf" id="aFF">🇺🇸</span><select class="csel" id="aFr" onchange="aCF()"></select></div><input class="af" type="number" id="aFA" placeholder="0.00" inputmode="decimal" oninput="aCF()"/></div>
+        <div class="sm"><button class="sbt" onclick="aSw()">⇅</button></div>
+        <div class="cb"><div class="cfr"><span class="cf" id="aTF">🇲🇽</span><select class="csel" id="aTo" onchange="aCF()"></select></div><input class="af" type="number" id="aTA" placeholder="0.00" inputmode="decimal" oninput="aCT()"/></div>
+      </div>
+      <div class="rc"><div class="rn" id="aRN">Escribe una cantidad</div><div class="rr" id="aRR">TASA EN TIEMPO REAL</div></div>
+    </div>
+
+    <!-- CHART PAGE -->
+    <div class="ap" id="pgChart">
+      <div class="chart-card">
+        <div class="chart-hdr">
+          <div class="chart-title">📊 Histórico de precio</div>
+          <select class="chart-sel" id="chartCur" onchange="updateChart()">
+            <option value="MXN">USD/MXN</option>
+            <option value="EUR">USD/EUR</option>
+            <option value="GBP">USD/GBP</option>
+            <option value="BRL">USD/BRL</option>
+            <option value="ARS">USD/ARS</option>
+            <option value="CAD">USD/CAD</option>
+            <option value="JPY">USD/JPY</option>
+          </select>
+        </div>
+        <div class="chart-tabs" style="margin-bottom:14px">
+          <button class="ctab on" onclick="setChartRange(7,this)">7D</button>
+          <button class="ctab" onclick="setChartRange(30,this)">1M</button>
+          <button class="ctab" onclick="setChartRange(90,this)">3M</button>
+          <button class="ctab" onclick="setChartRange(365,this)">1A</button>
+        </div>
+        <div class="chart-wrap"><canvas id="rateChart"></canvas></div>
+        <div style="margin-top:12px;font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;text-align:center" id="chartNote">Datos históricos aproximados generados para visualización</div>
+      </div>
+      <div class="sl2" style="margin-top:4px">RESUMEN DEL PERÍODO</div>
+      <div class="sg">
+        <div class="sc"><div class="sl">📈 MÁXIMO</div><div class="sv" id="chHigh">—</div></div>
+        <div class="sc"><div class="sl">📉 MÍNIMO</div><div class="sv" id="chLow">—</div></div>
+        <div class="sc"><div class="sl">📊 PROMEDIO</div><div class="sv" id="chAvg">—</div></div>
+        <div class="sc"><div class="sl">📅 CAMBIO</div><div class="sv" id="chChg">—</div></div>
+      </div>
+    </div>
+
+    <!-- NORA -->
+    <div class="ap" id="pgNora">
+      <div class="nh">
+        <div class="na">✦</div>
+        <div><div class="nn">NORA</div><div class="ns">Asistente financiero · NexFX</div></div>
+        <div class="no"><span class="dot"></span>ACTIVA</div>
+      </div>
+      <div class="cw">
+        <div class="cm" id="aMs"><div class="msg bot"><div class="ms">✦ NORA</div>¡Hola! Soy NORA, tu asistente financiero en NexFX. Puedo ayudarte con divisas, criptomonedas, economía y más. ¿En qué te ayudo?</div></div>
+        <div class="cb2"><input class="ci" id="aI" placeholder="Pregúntale algo a NORA..." onkeydown="if(event.key==='Enter')sA()"/><button class="sb" id="aSB" onclick="sA()">➤</button></div>
+      </div>
+    </div>
+
+    <!-- COMMENTS -->
+    <div class="ap" id="pgComments">
+      <div class="sl2">COMUNIDAD · COMENTARIOS Y SUGERENCIAS</div>
+      <div class="comment-form">
+        <div class="comment-form-title">💬 Déjanos tu comentario</div>
+        <div class="comment-form-sub">¿Tienes una duda, sugerencia o algo que quieras decirnos? ¡Escríbenos! Tu opinión nos ayuda a mejorar NexFX.</div>
+        <textarea class="comment-textarea" id="commentText" placeholder="Escribe aquí tu comentario, duda o sugerencia..."></textarea>
+        <div class="comment-type-row">
+          <button class="ctype-btn on" onclick="selType(this,'sugerencia')">💡 Sugerencia</button>
+          <button class="ctype-btn" onclick="selType(this,'pregunta')">❓ Pregunta</button>
+          <button class="ctype-btn" onclick="selType(this,'queja')">⚠️ Queja</button>
+        </div>
+        <button class="comment-send" onclick="postComment()">Enviar comentario ✦</button>
+      </div>
+      <div class="sl2">COMENTARIOS DE LA COMUNIDAD</div>
+      <div class="comment-list" id="commentList">
+        <div class="no-comments">Sé el primero en comentar 🌟</div>
+      </div>
+    </div>
+
+    <!-- BRANDS -->
+    <div class="ap" id="pgBrands">
+      <div class="bc" style="margin-bottom:13px">
+        <div class="be">PARA MARCAS Y EMPRESAS</div>
+        <div class="bt">¿Quieres llegar a nuestra audiencia?</div>
+        <div class="bd">NexFX conecta con usuarios que toman decisiones financieras todos los días.</div>
+        <button class="cbtn" onclick="openM('cM')">🤝 ¿Eres una marca? Contáctanos</button><br/>
+        <button class="devbtn" onclick="openM('dM')" style="margin-top:11px">⌨️ ¿Eres Dev? Escríbeme</button>
+      </div>
+      <div class="prv"><div class="prv-i">🔒</div><div class="prv-t"><strong>Tus datos están seguros.</strong> En NexFX nunca vendemos ni compartimos tu información personal con terceros.</div></div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="ap" id="pgProfile">
+      <div class="ph"><div class="pav" id="pAv">?</div><div class="pnm" id="pNm">—</div><div class="pem" id="pEm">—</div><div class="pb">NEXFX MEMBER</div></div>
+      <div class="mi" onclick="shareApp()"><div class="mii">📤</div><div class="mit"><div class="mttl">Compartir NexFX</div><div class="mds">Comparte con tus amigos</div></div><div class="mar">›</div></div>
+      <div class="mi" onclick="showP('Comments',null)"><div class="mii">💬</div><div class="mit"><div class="mttl">Comunidad</div><div class="mds">Ver comentarios y sugerencias</div></div><div class="mar">›</div></div>
+      <div class="mi" onclick="openM('cM')"><div class="mii">🤝</div><div class="mit"><div class="mttl">Colaboraciones</div><div class="mds">¿Eres una marca? Escríbenos</div></div><div class="mar">›</div></div>
+      <div class="mi" onclick="openM('dM')"><div class="mii">⌨️</div><div class="mit"><div class="mttl">¿Eres Dev? Escríbeme</div><div class="mds">LinkedIn · GitHub</div></div><div class="mar">›</div></div>
+      <div class="mi" onclick="toggleTheme()"><div class="mii" id="tMI">🌙</div><div class="mit"><div class="mttl">Modo oscuro / claro</div><div class="mds">Optimizado para batería</div></div><div class="mar">›</div></div>
+      <div class="mi" onclick="toggleSeniorMode()"><div class="mii">👴</div><div class="mit"><div class="mttl" id="seniorModeLabel">Modo Fácil (letra grande)</div><div class="mds">Para mayor comodidad visual</div></div><div class="mar">›</div></div>
+      <div class="mi" onclick="doLogout()"><div class="mii">🚪</div><div class="mit"><div class="mttl">Cerrar sesión</div></div><div class="mar">›</div></div>
+      <div class="cftr">© 2025 MORK_OFICIAL · NEXFX<br/>TODOS LOS DERECHOS RESERVADOS · v3.0</div>
+    </div>
+  </div>
+  <div class="abn">
+    <button class="bni on" onclick="showP('Monitor',this)"><span class="bnc">📡</span>Monitor</button>
+    <button class="bni" onclick="showP('Conv',this)"><span class="bnc">💱</span>Cambio</button>
+    <button class="bni" onclick="showP('Chart',this)"><span class="bnc">📊</span>Gráfica</button>
+    <button class="bni" onclick="showP('Nora',this)"><span class="bnc">✦</span>NORA</button>
+    <button class="bni" onclick="showP('Comments',this)"><span class="bnc">💬</span>Comunidad</button>
+    <button class="bni" onclick="showP('Profile',this)"><span class="bnc">👤</span>Perfil</button>
+  </div>
+</div>
+
+<!-- FLOAT NORA -->
+<div class="nb">
+  <div class="nhi" id="nHi">Si necesitas ayuda, ¡presióname!</div>
+  <button class="nbb" onclick="togF()">✦</button>
+</div>
+<div class="fp" id="fP">
+  <div class="fh">
+    <div class="fav">✦</div>
+    <div><div class="fnm">NORA</div><div class="fsu">Asistente · NexFX</div></div>
+    <button class="fcl" onclick="togF()">✕</button>
+  </div>
+  <div class="fm" id="fMs"><div class="msg bot" style="font-size:12px"><div class="ms" style="font-size:8px">✦ NORA</div>¡Hola! Soy NORA. ¿En qué te ayudo?</div></div>
+  <div class="fb"><input class="fi2" id="fI" placeholder="Pregúntale algo a NORA..." onkeydown="if(event.key==='Enter')sF()"/><button class="fs" id="fSB" onclick="sF()">➤</button></div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="ovl" id="authM" onclick="cOvl(event,'authM')">
+  <div class="am">
+    <button class="mcl" onclick="closeM('authM')">✕</button>
+    <div class="aw">NexFX</div>
+    <div class="aby">BY MORK_OFICIAL</div>
+    <div class="atabs">
+      <button class="atab on" id="tL" onclick="swTab('login')">ENTRAR</button>
+      <button class="atab" id="tR" onclick="swTab('reg')">REGISTRO</button>
+    </div>
+    <div id="lF">
+      <div class="field"><label>CORREO</label><input type="email" id="lE" placeholder="tu@correo.com" autocomplete="email"/></div>
+      <div class="field"><label>CONTRASEÑA</label><input type="password" id="lP" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+      <button class="pbtn" onclick="doLogin()">INICIAR SESIÓN</button>
+    </div>
+    <div id="rF" style="display:none">
+      <div class="field"><label>NOMBRE</label><input type="text" id="rN" placeholder="Tu nombre"/></div>
+      <div class="field"><label>CORREO</label><input type="email" id="rE" placeholder="tu@correo.com" autocomplete="email"/></div>
+      <div class="field"><label>CONTRASEÑA</label><input type="password" id="rP" placeholder="mínimo 6 caracteres" onkeydown="if(event.key==='Enter')doReg()"/></div>
+      <div class="prv" style="border-radius:9px;margin-bottom:10px;padding:9px 11px"><div class="prv-i" style="font-size:14px">🔒</div><div class="prv-t" style="font-size:11px">Tus datos están seguros. No los compartimos con nadie.</div></div>
+      <button class="pbtn" onclick="doReg()">CREAR CUENTA</button>
+    </div>
+    <div class="aerr" id="aE"></div>
+    <div class="gl" onclick="closeM('authM')">Continuar como invitado →</div>
+  </div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="ovl" id="cM" onclick="cOvl(event,'cM')">
+  <div class="modal">
+    <button class="mcl" onclick="closeM('cM')">✕</button>
+    <div class="mt">Contactar a Mork_Oficial</div>
+    <div class="md">¿Eres una marca interesada en colaborar con NexFX? Elige cómo contactarnos:</div>
+    <a class="copt" href="mailto:nexfx.morkoficial@gmail.com?subject=Colaboracion%20NexFX">
+      <div class="coi em-bg">✉️</div>
+      <div><div class="cot">Enviar correo</div><div class="cod">Escríbenos directamente</div></div>
+    </a>
+    <a class="copt" href="https://www.linkedin.com/in/daniel-alejandro-mugarte-flores-6178063b6" target="_blank" rel="noopener">
+      <div class="coi li-bg"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+      <div><div class="cot">LinkedIn</div><div class="cod">Perfil de Mork_Oficial</div></div>
+    </a>
+  </div>
+</div>
+
+<!-- DEV MODAL -->
+<div class="ovl" id="dM" onclick="cOvl(event,'dM')">
+  <div class="modal">
+    <button class="mcl" onclick="closeM('dM')">✕</button>
+    <div class="mt">¿Eres Dev o programador/a?</div>
+    <div class="md">Me encantaría conectar. Escríbeme por donde prefieras — colaboraciones, proyectos o feedback técnico.</div>
+    <a class="copt" href="https://www.linkedin.com/in/daniel-alejandro-mugarte-flores-6178063b6" target="_blank" rel="noopener">
+      <div class="coi li-bg"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+      <div><div class="cot">LinkedIn</div><div class="cod">Mensaje directo a Mork_Oficial</div></div>
+    </a>
+    <a class="copt" href="https://github.com/MorkOfical" target="_blank" rel="noopener">
+      <div class="coi gh-bg"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></div>
+      <div><div class="cot">GitHub</div><div class="cod">github.com/MorkOfical</div></div>
+    </a>
+    <a class="copt" href="mailto:nexfx.morkoficial@gmail.com?subject=Colaboracion%20Dev">
+      <div class="coi em-bg">✉️</div>
+      <div><div class="cot">Correo</div><div class="cod">Escríbenos directamente</div></div>
+    </a>
+  </div>
+</div>
+
+<!-- LANG MODAL -->
+<div class="ovl" id="lgM" onclick="cOvl(event,'lgM')">
+  <div class="modal" style="max-width:450px">
+    <button class="mcl" onclick="closeM('lgM')">✕</button>
+    <div class="mt">Select Language / Seleccionar Idioma</div>
+    <div class="md">Choose your preferred language for NexFX.</div>
+    <div class="lgr" id="lgr"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* NexFX © 2025 Mork_Oficial — All rights reserved */
+
+// ── LANGS ──
+const LANGS=[{code:'es',flag:'🇲🇽',label:'Español (MX)'},{code:'en',flag:'🇺🇸',label:'English'},{code:'fr',flag:'🇫🇷',label:'Français'},{code:'pt',flag:'🇧🇷',label:'Português'},{code:'de',flag:'🇩🇪',label:'Deutsch'},{code:'it',flag:'🇮🇹',label:'Italiano'},{code:'zh',flag:'🇨🇳',label:'中文'},{code:'ja',flag:'🇯🇵',label:'日本語'},{code:'ko',flag:'🇰🇷',label:'한국어'},{code:'ar',flag:'🇸🇦',label:'العربية'},{code:'ru',flag:'🇷🇺',label:'Русский'},{code:'hi',flag:'🇮🇳',label:'हिन्दी'}];
+let lang=localStorage.getItem('nfx_l')||((LANGS.find(l=>l.code===(navigator.language||'es').split('-')[0]))?((navigator.language||'es').split('-')[0]):'es');
+
+function openLang(){
+  const g=document.getElementById('lgr');g.innerHTML='';
+  LANGS.forEach(l=>{const d=document.createElement('div');d.className='lo'+(l.code===lang?' sel':'');d.innerHTML=`<div class="lf">${l.flag}</div><div class="ln">${l.label}</div>`;d.onclick=()=>{lang=l.code;localStorage.setItem('nfx_l',l.code);closeM('lgM');showToast('🌐 '+l.label)};g.appendChild(d)});
+  openM('lgM');
+}
+
+// ── THEME ──
+let dark=localStorage.getItem('nfx_t')!=='light';
+function applyTheme(){
+  document.body.classList.toggle('light',!dark);
+  const ic=dark?'🌙':'☀️';
+  ['tB','tB2'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=ic});
+  const m=document.getElementById('tMI');if(m)m.textContent=ic;
+  if(chartInst)chartInst.options.plugins.legend.labels.color=dark?'#8faac8':'#475569',chartInst.update();
+}
+function toggleTheme(){dark=!dark;localStorage.setItem('nfx_t',dark?'dark':'light');applyTheme();showToast(dark?'🌙 Modo oscuro':'☀️ Modo claro')}
+applyTheme();
+
+// ── SENIOR MODE ──
+let seniorMode=localStorage.getItem('nfx_senior')==='1';
+let seniorSignals=0;
+let seniorBannerShown=false;
+function applySenior(){
+  document.body.classList.toggle('senior',seniorMode);
+  const lbl=document.getElementById('seniorModeLabel');
+  if(lbl)lbl.textContent=seniorMode?'Modo Fácil ACTIVO ✓':'Modo Fácil (letra grande)';
+}
+function activateSenior(){seniorMode=true;localStorage.setItem('nfx_senior','1');applySenior();document.getElementById('seniorBanner').style.display='none';showToast('👴 Modo Fácil activado')}
+function toggleSeniorMode(){seniorMode=!seniorMode;localStorage.setItem('nfx_senior',seniorMode?'1':'0');applySenior();showToast(seniorMode?'👴 Modo Fácil activado':'Modo Fácil desactivado')}
+function checkSeniorSignal(){
+  seniorSignals++;
+  if(seniorSignals>=3&&!seniorMode&&!seniorBannerShown){
+    seniorBannerShown=true;
+    const b=document.getElementById('seniorBanner');
+    if(b)b.style.display='flex';
+  }
+}
+applySenior();
+
+// ── AUTH ──
+const UK='nfx_u',SK='nfx_s';
+const gU=()=>JSON.parse(localStorage.getItem(UK)||'[]');
+const sU=u=>localStorage.setItem(UK,JSON.stringify(u));
+const gS=()=>JSON.parse(localStorage.getItem(SK)||'null');
+const sS=u=>localStorage.setItem(SK,JSON.stringify(u));
+
+function openAuth(t){swTab(t);openM('authM')}
+function swTab(t){
+  document.getElementById('lF').style.display=t==='login'?'block':'none';
+  document.getElementById('rF').style.display=t==='reg'?'block':'none';
+  document.getElementById('tL').className='atab'+(t==='login'?' on':'');
+  document.getElementById('tR').className='atab'+(t==='reg'?' on':'');
+  document.getElementById('aE').textContent='';
+}
+function sErr(m){document.getElementById('aE').textContent=m}
+function doLogin(){
+  const email=document.getElementById('lE').value.trim();
+  const pass=document.getElementById('lP').value;
+  if(!email||!pass){sErr('Completa todos los campos');return}
+  const u=gU().find(u=>u.email===email&&u.pass===pass);
+  if(!u){sErr('Correo o contraseña incorrectos');return}
+  sS(u);closeM('authM');enterApp(u);
+}
+function doReg(){
+  const name=document.getElementById('rN').value.trim();
+  const email=document.getElementById('rE').value.trim();
+  const pass=document.getElementById('rP').value;
+  if(!name||!email||!pass){sErr('Completa todos los campos');return}
+  if(pass.length<6){sErr('Contraseña mínimo 6 caracteres');return}
+  const users=gU();
+  if(users.find(u=>u.email===email)){sErr('Este correo ya está registrado');return}
+  const user={name,email,pass,joined:new Date().toISOString(),lastLogin:new Date().toISOString(),sessions:1};
+  users.push(user);sU(users);sS(user);
+  logA('register',{name,email});closeM('authM');enterApp(user);
+}
+function doLogout(){
+  localStorage.removeItem(SK);
+  document.getElementById('app').classList.remove('on');
+  document.getElementById('land').style.display='';
+  showToast('👋 Hasta pronto');
+}
+function enterApp(u){
+  const users=gU();const i=users.findIndex(x=>x.email===u.email);
+  if(i>=0){users[i].lastLogin=new Date().toISOString();users[i].sessions=(users[i].sessions||0)+1;sU(users)}
+  logA('login',{email:u.email});
+  document.getElementById('land').style.display='none';
+  document.getElementById('app').classList.add('on');
+  document.getElementById('aUN').textContent=u.name.split(' ')[0].toUpperCase();
+  document.getElementById('pAv').textContent=u.name[0].toUpperCase();
+  document.getElementById('pNm').textContent=u.name;
+  document.getElementById('pEm').textContent=u.email;
+  currentUser=u;
+  if(!appReady)initApp();
+}
+let currentUser=null;
+
+// ── ANALYTICS ──
+function logA(ev,data){
+  const logs=JSON.parse(localStorage.getItem('nfx_log')||'[]');
+  logs.push({ev,data,ts:new Date().toISOString()});
+  if(logs.length>500)logs.splice(0,logs.length-500);
+  localStorage.setItem('nfx_log',JSON.stringify(logs));
+}
+window.showAdminDashboard=function(){
+  const users=gU().map(u=>({name:u.name,email:u.email,joined:u.joined,lastLogin:u.lastLogin,sessions:u.sessions}));
+  const logs=JSON.parse(localStorage.getItem('nfx_log')||'[]');
+  const evs={};logs.forEach(l=>{evs[l.ev]=(evs[l.ev]||0)+1});
+  const comments=JSON.parse(localStorage.getItem('nfx_comments')||'[]');
+  console.group('%c NexFX Admin — © Mork_Oficial','color:#00f5d4;font-size:16px;font-weight:bold');
+  console.log('%c USUARIOS','color:#3b82f6;font-weight:bold',users.length);console.table(users);
+  console.log('%c EVENTOS','color:#8b5cf6;font-weight:bold');console.table(evs);
+  console.log('%c COMENTARIOS ('+comments.length+')','color:#f59e0b;font-weight:bold');console.table(comments);
+  console.groupEnd();return{users,evs,logs,comments};
+};
+
+// ── NAV ──
+let appReady=false;
+function showP(name,el){
+  document.querySelectorAll('.ap').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.ani,.bni').forEach(n=>n.classList.remove('on'));
+  document.getElementById('pg'+name).classList.add('on');
+  if(el)el.classList.add('on');
+  logA('page',{page:name});
+  if(name==='Chart')setTimeout(()=>updateChart(),100);
+  if(name==='Comments')renderComments();
+}
+
+// ── MODALS ──
+function openM(id){document.getElementById(id).classList.add('open')}
+function closeM(id){document.getElementById(id).classList.remove('open')}
+function cOvl(e,id){if(e.target.id===id)closeM(id)}
+
+// ── RATES ──
+let rates={},usdMxn=null,dailyHigh=null,dailyLow=null,openRate=null;
+const CURR=[{code:'USD',flag:'🇺🇸'},{code:'MXN',flag:'🇲🇽'},{code:'EUR',flag:'🇪🇺'},{code:'GBP',flag:'🇬🇧'},{code:'CAD',flag:'🇨🇦'},{code:'JPY',flag:'🇯🇵'},{code:'BRL',flag:'🇧🇷'},{code:'ARS',flag:'🇦🇷'},{code:'COP',flag:'🇨🇴'},{code:'CLP',flag:'🇨🇱'},{code:'CNY',flag:'🇨🇳'},{code:'INR',flag:'🇮🇳'},{code:'AUD',flag:'🇦🇺'},{code:'CHF',flag:'🇨🇭'},{code:'KRW',flag:'🇰🇷'},{code:'SGD',flag:'🇸🇬'},{code:'NOK',flag:'🇳🇴'},{code:'SEK',flag:'🇸🇪'},{code:'DKK',flag:'🇩🇰'},{code:'ZAR',flag:'🇿🇦'},{code:'TRY',flag:'🇹🇷'},{code:'SAR',flag:'🇸🇦'},{code:'AED',flag:'🇦🇪'},{code:'HKD',flag:'🇭🇰'},{code:'NZD',flag:'🇳🇿'},{code:'RUB',flag:'🇷🇺'}];
+const FL=Object.fromEntries(CURR.map(c=>[c.code,c.flag]));
+
+async function fetchR(){
+  try{const r=await fetch('https://open.er-api.com/v6/latest/USD');const d=await r.json();if(d.result!=='success')throw 0;rates=d.rates;setR()}
+  catch{try{const r2=await fetch('https://api.exchangerate.host/latest?base=USD');const d2=await r2.json();rates=d2.rates;setR()}catch{}}
+}
+function setR(){
+  usdMxn=rates.MXN;
+  if(!openRate)openRate=usdMxn;
+  if(!dailyHigh||usdMxn>dailyHigh)dailyHigh=usdMxn;
+  if(!dailyLow||usdMxn<dailyLow)dailyLow=usdMxn;
+  rL();rA();gwC();aCF();
+}
+function xr(a,b){return rates[a]&&rates[b]?(rates[b]/rates[a]).toFixed(4):'—'}
+function rL(){
+  if(!usdMxn)return;
+  document.getElementById('lwR').textContent=usdMxn.toFixed(4);
+  const diff=openRate?usdMxn-openRate:0;const pct=openRate?((diff/openRate)*100).toFixed(2):'0.00';const s=diff>=0?'+':'';
+  const c=document.getElementById('lwC');c.textContent=`${s}${diff.toFixed(4)} (${s}${pct}%)`;c.className='chip '+(diff>0?'pos':diff<0?'neg':'neu');
+  document.getElementById('lwT').textContent=new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  document.getElementById('pEM').textContent=xr('EUR','MXN');document.getElementById('pGM').textContent=xr('GBP','MXN');
+  document.getElementById('pCM').textContent=xr('CAD','MXN');document.getElementById('pBM').textContent=xr('BRL','MXN');
+  document.getElementById('pJM').textContent=xr('JPY','MXN');document.getElementById('pAM').textContent=xr('ARS','MXN');
+  gwC();
+}
+function rA(){
+  if(!usdMxn)return;
+  document.getElementById('aR').textContent=usdMxn.toFixed(4);
+  const diff=openRate?usdMxn-openRate:0;const pct=openRate?((diff/openRate)*100).toFixed(2):'0.00';const s=diff>=0?'+':'';
+  const c=document.getElementById('aC');c.textContent=`${s}${diff.toFixed(4)} (${s}${pct}%)`;c.className='chip '+(diff>0?'pos':diff<0?'neg':'neu');
+  document.getElementById('aT').textContent=new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  if(dailyHigh)document.getElementById('aH').textContent=dailyHigh.toFixed(2);
+  if(dailyLow)document.getElementById('aL').textContent=dailyLow.toFixed(2);
+  document.getElementById('aPEM').textContent=xr('EUR','MXN');document.getElementById('aPGM').textContent=xr('GBP','MXN');
+  document.getElementById('aPCM').textContent=xr('CAD','MXN');document.getElementById('aPBM').textContent=xr('BRL','MXN');
+  document.getElementById('aPJM').textContent=xr('JPY','MXN');document.getElementById('aPAM').textContent=xr('ARS','MXN');
+}
+
+// ── CONVERTERS ──
+function cv(amt,fr,to){if(!rates[fr]||!rates[to])return null;return(amt/rates[fr])*rates[to]}
+function popSel(fId,tId,fD='USD',tD='MXN'){
+  [fId,tId].forEach(id=>{const s=document.getElementById(id);if(!s)return;s.innerHTML='';CURR.forEach(c=>{const o=document.createElement('option');o.value=c.code;o.textContent=`${c.flag} ${c.code}`;s.appendChild(o)})});
+  document.getElementById(fId).value=fD;document.getElementById(tId).value=tD;
+}
+function gwC(){
+  const fr=document.getElementById('gF').value,to=document.getElementById('gT').value;
+  if(rates[fr]&&rates[to]){const r1=cv(1,fr,to),r2=cv(1,to,fr);if(r1)document.getElementById('gFP').textContent=`1 ${fr} = ${r1.toFixed(4)} ${to}`;if(r2)document.getElementById('gTP').textContent=`1 ${to} = ${r2.toFixed(4)} ${fr}`}
+  gwCF();
+}
+function gwCF(){
+  const amt=parseFloat(document.getElementById('gA').value);const fr=document.getElementById('gF').value,to=document.getElementById('gT').value;
+  gwC();
+  if(isNaN(amt)){document.getElementById('gRN').textContent='Escribe una cantidad';document.getElementById('gRR').textContent='TASA EN TIEMPO REAL';document.getElementById('gR').value='';return}
+  const res=cv(amt,fr,to);if(!res)return;
+  document.getElementById('gR').value=res.toFixed(4);
+  document.getElementById('gRN').textContent=`${res.toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:4})} ${to}`;
+  document.getElementById('gRR').textContent=`1 ${fr} = ${cv(1,fr,to)?.toFixed(4)} ${to}`;
+}
+function gwCT(){
+  const amt=parseFloat(document.getElementById('gR').value);const fr=document.getElementById('gF').value,to=document.getElementById('gT').value;
+  if(isNaN(amt)){document.getElementById('gA').value='';return}
+  const res=cv(amt,to,fr);if(!res)return;
+  document.getElementById('gA').value=res.toFixed(4);
+  document.getElementById('gRN').textContent=`${amt} ${to} = ${res.toFixed(4)} ${fr}`;
+  document.getElementById('gRR').textContent=`1 ${fr} = ${cv(1,fr,to)?.toFixed(4)} ${to}`;
+}
+function gwSw(){const fc=document.getElementById('gF'),tc=document.getElementById('gT');[fc.value,tc.value]=[tc.value,fc.value];gwCF();showToast('⇅')}
+function aCF(){
+  const amt=parseFloat(document.getElementById('aFA').value);const fr=document.getElementById('aFr').value,to=document.getElementById('aTo').value;
+  document.getElementById('aFF').textContent=FL[fr]||'🏳️';document.getElementById('aTF').textContent=FL[to]||'🏳️';
+  if(isNaN(amt)){document.getElementById('aRN').textContent='Escribe una cantidad';return}
+  const res=cv(amt,fr,to);if(!res)return;
+  document.getElementById('aTA').value=res.toFixed(4);
+  document.getElementById('aRN').textContent=`${res.toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:4})} ${to}`;
+  document.getElementById('aRR').textContent=`1 ${fr} = ${cv(1,fr,to)?.toFixed(4)} ${to}`;
+}
+function aCT(){
+  const amt=parseFloat(document.getElementById('aTA').value);const fr=document.getElementById('aFr').value,to=document.getElementById('aTo').value;
+  if(isNaN(amt))return;const res=cv(amt,to,fr);if(!res)return;
+  document.getElementById('aFA').value=res.toFixed(4);
+  document.getElementById('aRN').textContent=`${amt} ${to} = ${res.toFixed(4)} ${fr}`;
+  document.getElementById('aRR').textContent=`1 ${fr} = ${cv(1,fr,to)?.toFixed(4)} ${to}`;
+}
+function aSw(){const fc=document.getElementById('aFr'),tc=document.getElementById('aTo');[fc.value,tc.value]=[tc.value,fc.value];document.getElementById('aFF').textContent=FL[fc.value]||'🏳️';document.getElementById('aTF').textContent=FL[tc.value]||'🏳️';aCF();showToast('⇅')}
+
+// ── CHART ──
+let chartInst=null,chartRange=7;
+function genHistoricalData(baseRate,days){
+  const data=[];const now=Date.now();
+  let price=baseRate*(0.94+Math.random()*.12);
+  for(let i=days;i>=0;i--){
+    const date=new Date(now-i*86400000);
+    price=price*(1+(Math.random()-.48)*.008);
+    data.push({x:date.toLocaleDateString('es-MX',{month:'short',day:'numeric'}),y:parseFloat(price.toFixed(4))});
+  }
+  return data;
+}
+function setChartRange(days,el){
+  chartRange=days;
+  document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('on'));
+  if(el)el.classList.add('on');
+  updateChart();
+}
+function updateChart(){
+  const cur=document.getElementById('chartCur')?.value||'MXN';
+  const base=rates[cur]?1/rates[cur]:1/17.5;
+  const baseRate=rates[cur]||17.5;
+  const data=genHistoricalData(baseRate,chartRange);
+  const vals=data.map(d=>d.y);
+  const high=Math.max(...vals),low=Math.min(...vals),avg=vals.reduce((a,b)=>a+b,0)/vals.length;
+  const chg=((vals[vals.length-1]-vals[0])/vals[0]*100);
+  document.getElementById('chHigh').textContent=high.toFixed(4);
+  document.getElementById('chLow').textContent=low.toFixed(4);
+  document.getElementById('chAvg').textContent=avg.toFixed(4);
+  const chEl=document.getElementById('chChg');
+  chEl.textContent=(chg>=0?'+':'')+chg.toFixed(2)+'%';
+  chEl.style.color=chg>=0?'var(--green)':'var(--red)';
+  const ctx=document.getElementById('rateChart');if(!ctx)return;
+  const isDarkMode=!document.body.classList.contains('light');
+  const gridColor=isDarkMode?'rgba(30,45,85,.5)':'rgba(208,218,240,.8)';
+  const textColor=isDarkMode?'#8faac8':'#475569';
+  const gradient=ctx.getContext('2d').createLinearGradient(0,0,0,ctx.offsetHeight||280);
+  gradient.addColorStop(0,'rgba(0,245,212,.25)');gradient.addColorStop(1,'rgba(0,245,212,.01)');
+  if(chartInst)chartInst.destroy();
+  chartInst=new Chart(ctx,{
+    type:'line',
+    data:{labels:data.map(d=>d.x),datasets:[{label:`USD/${cur}`,data:vals,borderColor:'#00f5d4',backgroundColor:gradient,borderWidth:2,pointRadius:0,pointHoverRadius:4,tension:.4,fill:true}]},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      interaction:{intersect:false,mode:'index'},
+      plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(10,16,32,.9)',titleColor:'#00f5d4',bodyColor:'#e2eaf8',borderColor:'#1e2d55',borderWidth:1,callbacks:{label:(c)=>`${c.dataset.label}: ${c.raw.toFixed(4)}`}}},
+      scales:{
+        x:{grid:{color:gridColor},ticks:{color:textColor,maxTicksLimit:8,maxRotation:0}},
+        y:{grid:{color:gridColor},ticks:{color:textColor,callback:(v)=>v.toFixed(2)}}
+      }
+    }
+  });
+}
+
+// ── COMMENTS ──
+let selectedType='sugerencia';
+function selType(el,type){
+  selectedType=type;
+  document.querySelectorAll('.ctype-btn').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+}
+function postComment(){
+  const txt=document.getElementById('commentText').value.trim();
+  if(!txt){showToast('Escribe algo primero ✏️');return}
+  if(!currentUser){showToast('Inicia sesión para comentar');return}
+  const comments=JSON.parse(localStorage.getItem('nfx_comments')||'[]');
+  const comment={id:Date.now(),user:currentUser.name,email:currentUser.email,text:txt,type:selectedType,date:new Date().toISOString()};
+  comments.unshift(comment);
+  localStorage.setItem('nfx_comments',JSON.stringify(comments));
+  document.getElementById('commentText').value='';
+  logA('comment',{type:selectedType,length:txt.length});
+  // Silently analyze with AI (not shown to user)
+  analyzeCommentSilent(comment);
+  renderComments();
+  showToast('¡Comentario enviado! 🌟');
+}
+async function analyzeCommentSilent(comment){
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:300,system:'Analiza este comentario de usuario de una app de divisas llamada NexFX. Extrae: 1) sentimiento (positivo/negativo/neutro), 2) tema principal, 3) si hay una acción de mejora sugerida. Responde en JSON solo: {"sentiment":"...","topic":"...","action":"..."}',messages:[{role:'user',content:`Tipo: ${comment.type}\nComentario: ${comment.text}`}]})});
+    const d=await r.json();const txt=d.content?.[0]?.text||'{}';
+    try{const analysis=JSON.parse(txt.replace(/```json|```/g,'').trim());const comments=JSON.parse(localStorage.getItem('nfx_comments')||'[]');const idx=comments.findIndex(c=>c.id===comment.id);if(idx>=0){comments[idx]._analysis=analysis;localStorage.setItem('nfx_comments',JSON.stringify(comments))}}catch{}
+  }catch{}
+}
+function renderComments(){
+  const list=document.getElementById('commentList');
+  const comments=JSON.parse(localStorage.getItem('nfx_comments')||'[]');
+  if(!comments.length){list.innerHTML='<div class="no-comments">Sé el primero en comentar 🌟</div>';return}
+  list.innerHTML=comments.map(c=>{
+    const d=new Date(c.date);const ds=d.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'});
+    const tagClass=`tag-${c.type}`;const tagEmoji=c.type==='sugerencia'?'💡':c.type==='pregunta'?'❓':'⚠️';
+    return`<div class="comment-item"><div class="comment-meta"><div class="comment-avatar">${c.user[0].toUpperCase()}</div><span class="comment-name">${c.user}</span><span class="comment-date">${ds}</span><span class="comment-tag ${tagClass}">${tagEmoji} ${c.type}</span></div><div class="comment-text">${c.text}</div></div>`;
+  }).join('');
+}
+
+// ── NORA AI ──
+function bldSys(){
+  const seniorTip=seniorMode?'\nEl usuario usa Modo Fácil — usa frases simples, claras y sin tecnicismos. Responde como si le hablaras a una persona mayor.':'';
+  return`Eres NORA, la asistente financiera de NexFX, plataforma de divisas creada por Mork_Oficial. Experta en finanzas, divisas, crypto y economía global. Idioma: ${LANGS.find(l=>l.code===lang)?.label||'Español mexicano'}. Responde SIEMPRE en ese idioma. Tasa actual: 1 USD = ${usdMxn?usdMxn.toFixed(2):'~17.50'} MXN. NUNCA menciones Claude ni Anthropic — eres NORA de NexFX. Si piden contactar al dev: LinkedIn https://www.linkedin.com/in/daniel-alejandro-mugarte-flores-6178063b6 o GitHub https://github.com/MorkOfical${seniorTip}`;
+}
+let aH=[],fH=[],fOpen=false;
+let noraQueryCount=0;
+async function sA(){
+  const inp=document.getElementById('aI');const txt=inp.value.trim();if(!txt)return;
+  inp.value='';document.getElementById('aSB').disabled=true;
+  noraQueryCount++;if(noraQueryCount>=3)checkSeniorSignal();
+  addMsg('aMs',txt,'user');aH.push({role:'user',content:txt});
+  const tk=addMsg('aMs','...','bot thinking');
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:bldSys(),messages:aH})});
+    const d=await r.json();const reply=d.content?.map(b=>b.text||'').join('')||'Error.';
+    tk.remove();addMsg('aMs',reply,'bot');aH.push({role:'assistant',content:reply});
+    if(aH.length>20)aH=aH.slice(-20);logA('nora',{lang});
+  }catch{tk.remove();addMsg('aMs','Error de conexión. Verifica tu internet.','bot')}
+  document.getElementById('aSB').disabled=false;
+}
+function togF(){fOpen=!fOpen;document.getElementById('fP').classList.toggle('open',fOpen);document.getElementById('nHi').style.display='none'}
+async function sF(){
+  const inp=document.getElementById('fI');const txt=inp.value.trim();if(!txt)return;
+  inp.value='';document.getElementById('fSB').disabled=true;
+  noraQueryCount++;if(noraQueryCount>=3)checkSeniorSignal();
+  addMsg('fMs',txt,'user');fH.push({role:'user',content:txt});
+  const tk=addMsg('fMs','...','bot thinking');
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:800,system:bldSys(),messages:fH})});
+    const d=await r.json();const reply=d.content?.map(b=>b.text||'').join('')||'Error.';
+    tk.remove();addMsg('fMs',reply,'bot');fH.push({role:'assistant',content:reply});
+    if(fH.length>16)fH=fH.slice(-16);
+  }catch{tk.remove();addMsg('fMs','Error de conexión.','bot')}
+  document.getElementById('fSB').disabled=false;
+}
+function addMsg(cId,text,type){
+  const c=document.getElementById(cId);const el=document.createElement('div');el.className='msg '+type;
+  if(type.includes('bot')&&!type.includes('thinking'))el.innerHTML=`<div class="ms">✦ NORA</div>${text}`;
+  else el.textContent=text;
+  c.appendChild(el);c.scrollTop=c.scrollHeight;return el;
+}
+
+// Detect zoom as senior signal
+let zoomCheckDone=false;
+function checkZoom(){
+  if(zoomCheckDone)return;
+  const zoom=window.devicePixelRatio||1;
+  const ww=window.innerWidth;
+  // If viewport is very small relative to screen (user zoomed in a lot)
+  if(zoom>2.2||ww<320){checkSeniorSignal();zoomCheckDone=true}
+}
+
+// ── SHARE ──
+function shareApp(){
+  const data={title:'NexFX',text:`💱 Convierte cualquier moneda con IA.\n💵 USD→MXN: $${usdMxn?usdMxn.toFixed(2):'--'} MXN · Por Mork_Oficial`,url:window.location.href};
+  if(navigator.share)navigator.share(data);
+  else{navigator.clipboard?.writeText(`${data.text}\n${data.url}`);showToast('📋 Link copiado')}
+  logA('share',{});
+}
+
+// ── TOAST ──
+function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
+
+// ── INIT ──
+function initApp(){
+  appReady=true;
+  popSel('aFr','aTo');
+  fetchR();
+  setInterval(fetchR,60000);
+  setInterval(()=>{rL();rA()},1000);
+  renderComments();
+  checkZoom();
+  window.addEventListener('resize',checkZoom);
+}
+
+window.addEventListener('DOMContentLoaded',()=>{
+  popSel('gF','gT');
+  fetchR();
+  setInterval(fetchR,60000);
+  setInterval(rL,1000);
+  checkZoom();
+  const s=gS();if(s)enterApp(s);
+});
+</script>
+</body>
+</html>
