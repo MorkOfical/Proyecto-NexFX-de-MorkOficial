@@ -1,0 +1,53 @@
+/* Modo senior — escala tipográfica ampliada */
+body.senior {
+  --fs: 1.18;
+}
+body.senior .tb-logo {
+  font-size: clamp(24px, 3.5vw, 32px);
+}
+body.senior .htitle {
+  font-size: clamp(38px, 7vw, 80px);
+}
+body.senior .hsub,
+.senior .fdesc,
+.senior .bd,
+.senior .prv-t {
+  font-size: clamp(16px, 2vw, 20px) !important;
+  line-height: 1.9 !important;
+}
+body.senior .ft,
+.senior .mttl,
+.senior .cot,
+.senior .co-ttl {
+  font-size: clamp(17px, 2.2vw, 21px) !important;
+}
+body.senior .cinput,
+.senior .sw-input,
+.senior .af {
+  font-size: clamp(24px, 4vw, 30px) !important;
+}
+body.senior .csel,
+.senior .cur-sel {
+  font-size: 16px !important;
+  padding: 12px !important;
+}
+body.senior .pbtn,
+.senior .hp,
+.senior .cbtn,
+.senior .tbtn {
+  font-size: 16px !important;
+  padding: 16px 28px !important;
+}
+body.senior .msg {
+  font-size: 16px !important;
+  line-height: 1.8 !important;
+  padding: 16px !important;
+}
+body.senior .pill {
+  font-size: 12px !important;
+  padding: 6px 14px !important;
+}
+body.senior .chip {
+  font-size: 14px !important;
+  padding: 5px 12px !important;
+}

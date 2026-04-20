@@ -16,7 +16,7 @@
       rel="stylesheet"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="assets/styles/main.css" />
   </head>
 
   <body>
@@ -24,15 +24,32 @@
 
     <!-- LANDING -->
     <div id="land">
-      <nav class="topbar">
+      <nav class="topbar" aria-label="Navegación principal">
         <div class="tb-left">
-          <button class="lbtn" onclick="openLang()">🌐 Change Language</button>
-          <button class="ibtn" onclick="toggleTheme()" id="tB">🌙</button>
+          <button
+            type="button"
+            class="lbtn"
+            onclick="openLang()"
+            title="Cambiar idioma / Change language"
+            aria-label="Cambiar idioma"
+          >
+            <span class="lbtn-desktop">🌐 Change Language</span>
+            <span class="lbtn-mobile" aria-hidden="true">🌐</span>
+          </button>
+          <button type="button" class="ibtn" onclick="toggleTheme()" id="tB" title="Tema">
+            🌙
+          </button>
         </div>
         <div class="tb-logo">NexFX</div>
         <div class="tb-right">
-          <button class="obtn" onclick="openAuth('login')">Iniciar Sesión</button>
-          <button class="tbtn" onclick="openAuth('reg')">Registrarse</button>
+          <button type="button" class="obtn" onclick="openAuth('login')">
+            <span class="btn-txt-full">Iniciar Sesión</span>
+            <span class="btn-txt-short">Entrar</span>
+          </button>
+          <button type="button" class="tbtn" onclick="openAuth('reg')">
+            <span class="btn-txt-full">Registrarse</span>
+            <span class="btn-txt-short">Registro</span>
+          </button>
         </div>
       </nav>
       <section class="hero">
@@ -752,6 +769,6 @@
 
     <div class="toast" id="toast"></div>
 
-    <script src="assets/script.js"></script>
+    <script type="module" src="assets/scripts/main.js"></script>
   </body>
 </html>
