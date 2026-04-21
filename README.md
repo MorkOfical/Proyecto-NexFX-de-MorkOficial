@@ -4,6 +4,8 @@
 
 NexFX es una plataforma de cambio y conversión de moneda con interfaz moderna (modo oscuro, acentos en gradiente cyan/azul). Convierte cualquier moneda al instante, con asistente de IA integrado (NORA) y tasas actualizadas en vivo.
 
+[Ir a la pagina web](https://morkofical.github.io/Proyecto-NexFX-de-MorkOficial/)
+
 ![Captura de la landing de NexFX: hero, convertidor y tasas en vivo](screenshot.png)
 
 Copia de respaldo y espacio colaborativo para que desarrolladores y programadores puedan revisar, sugerir mejoras y ayudar con el código del proyecto.
